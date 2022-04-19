@@ -1,0 +1,36 @@
+version: "3.9"                               # Docker Compose Version
+services:                                    #
+  smart-home:                                # Smart-Home service
+    build: .                                 # Hier muss ein Dockerfile verwendet werden
+    # build:                                 #
+      # context: .                           #
+      # dockerfile: Dockerfile               #
+    # docker run -it                         #
+    stdin_open: true                         # Wird im -it mode gestartet. Es schließt sich nicht direkt
+    tty: true                                # Wird im -it mode gestartet. Es schließt sich nicht direkt
+    environment:                             # Für Nginx enviremts variablen
+      - NGINX_HOST=smart-home-test.com       # Hostname
+      - NGINX_PORT=80                        # Port von Nginx
+    volumes:                                 # geteilte Laufwerke
+      - ./www/:/usr/share/nginx/html         # Website Daten
+      - ./logs:/var/log/nginx                # Logs
+      - ./typescript-plugin:/var/typescript  # typescript plugin von Frontend
+                                             #
+                                             #
+    ports:                                   # Portweiterleitung
+      - "8080:80"                            # Ist außerhalb von Docker via 8080 erreichbar
+  mydatabase:                                # name des Service
+    image: mariadb                           # das Ausgewahlte Image
+    ports:                                   # 
+     - 3306:3306                             # Port Einstellung
+    environment:                             # Umgebungsvariablen.
+     - MARIADB_ROOT_PASSWORD=rootpassword    # Rootpasswort
+     - MARIADB_DATABASE=smart-home           # erstellte Start Datenbank
+     - MARIADB_USER=student                  # angelegter Benutzer
+     - MARIADB_PASSWORD=password123          # passwort des Benutzer
+  phpmyadmin:                                # Name des neuen Service
+    image: phpmyadmin                        # image 
+    ports:                                   #
+     - 8081:80                               # Port
+    environment:                             # Umgebungsvariable fuer phpmyadmin
+     - PMA_HOST=mydatabase                   # 
