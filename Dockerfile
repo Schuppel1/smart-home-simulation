@@ -11,3 +11,4 @@ copy ./nginx-conf/nginx.conf /etc/nginx/nginx.conf
 
 # npm Modul depencencies. 
 cmd apt update ;apt install -y npm; cd /var/typescript/; npm i; npm run watch
+CMD ["nginx", "-g", "daemon off;"]
