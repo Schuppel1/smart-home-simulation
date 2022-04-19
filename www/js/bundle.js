@@ -9,6 +9,7 @@
             this.innerHTML = "<h1>Hello World</h1>";
         }
     }
+    console.log("Ibims");
 
     // THIS IS A MODULE
     function alertMe() {
@@ -29,5 +30,6 @@
         const val = e.target;
         console.log(e, val.value);
     }
+    console.log("einz test");
 
 })();
