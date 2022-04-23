@@ -10,4 +10,4 @@ copy ./nginx-conf/nginx.conf /etc/nginx/nginx.conf
 #copy ./*.js /usr/share/nginx/html/
 
 # npm Modul depencencies. 
-CMD service nginx start; apt update ;apt install -y npm; cd /var/typescript/; npm i; npm run watch
+CMD service nginx start; apt update ;apt install -y npm; cd /var/typescript/; npm i; npm run watch ;
