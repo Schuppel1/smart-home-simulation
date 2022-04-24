@@ -43,7 +43,6 @@ h2{
 .icon{
     height: 62px;
     width: 62px;
-    padding: 32px;
 }
 .button_icon_l{
     border: none;
@@ -72,3 +71,8 @@ h2{
     left: 620px;
     top: 520px;
 }
+
+model-viewer {
+    width: 800px;
+    height: 600px;
+  } 
