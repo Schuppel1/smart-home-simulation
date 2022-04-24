@@ -4,10 +4,10 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
-h1{
+h2{
     font-size: 45px;
 }
-h2{
+h3{
     font-size: 21px;
 }
 .controls{
@@ -16,7 +16,7 @@ h2{
     background-color: #EAEAEA; 
 }
 
-.title h1{
+.title h2{
     padding: 27px 0px 0px 38px;
 }
 .rooms{
@@ -33,9 +33,9 @@ h2{
     margin-top: 48px;
 }
 
-.room1 h2,
-.room2 h2,
-.room3 h2{
+.room1 h3,
+.room2 h3,
+.room3 h3{
     padding: 8px 0px 8px 20px;
 }
 
