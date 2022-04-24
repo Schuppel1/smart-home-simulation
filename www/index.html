@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- head definitions go here -->
-        <script type="module" src="./js/model-viewer.min.js" defer></script>
-        <script type="module" src="./js/script.js" defer></script>
-        <script type="moduke" src="./js/tailwind.config.js" defer></script>
-        
-    </head>
-    <body>
-		<h1>adadadada</h1>
-		<p>afafafafafafafaf</p>
-        <!-- the content goes here -->
-    </body>
+  <head>
+    <!-- head definitions go here -->
+    <script type="module" src="./js/model-viewer.min.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="controls">
+      <div class="title">
+        <h1>Beispiel Tinyhouse</h1>
+      </div>
+      <div class="rooms">
+      <div class="room1">
+        <h2>Badezimmer</h2>
+        <button class="button_icon_l"><img class="icon" src="./img/lightbulb.png"></button>
+        <button class="button_icon_m"><img class="icon" src="./img/heizung.png"></button>
+        <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button>
+      </div>
+      <div class="room2">
+        <h2>Küche</h2>
+        <button class="button_icon_l"><img class="icon" src="./img/lightbulb.png"></button>
+        <button class="button_icon_m"><img class="icon" src="./img/heizung.png"></button>
+        <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button>
+      </div>
+      <div class="room3">
+        <h2>Wohnzimmer</h2>
+        <button class="button_icon_l"><img class="icon" src="./img/lightbulb.png"></button>
+        <button class="button_icon_m"><img class="icon" src="./img/heizung.png"></button>
+        <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button>
+      </div>
+    </div>
+      <button class="slide_in"><img src="./img/arrow.png"></button>
+    </div>
+  </body>
 </html>

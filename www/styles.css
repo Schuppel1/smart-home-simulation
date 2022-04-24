@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    font-size: 45px;
+}
+h2{
+    font-size: 21px;
+}
+.controls{
+    width: 640px;
+    height: 1080px;
+    background-color: #EAEAEA; 
+}
+
+.title h1{
+    padding: 27px 0px 0px 38px;
+}
+.rooms{
+    margin-left: 38px;
+    margin-top: 93px;
+}
+
+.room1,
+.room2,
+.room3{
+    background-color: white;
+    width: 567px;
+    height: 205px;
+    margin-top: 48px;
+}
+
+.room1 h2,
+.room2 h2,
+.room3 h2{
+    padding: 8px 0px 8px 20px;
+}
+
+
+.icon{
+    height: 62px;
+    width: 62px;
+    padding: 32px;
+}
+.button_icon_l{
+    border: none;
+    background: #EAEAEA;
+    margin-left: 20px;
+
+}
+
+.button_icon_m{
+    border: none;
+    background: #EAEAEA;
+    margin: 0px 51px 0px 51px;
+}
+
+.button_icon_r{
+    border: none;
+    background: #EAEAEA;
+    margin-right: 20px;
+}
+
+.slide_in{
+    padding: 0;
+    border: none;
+    background: none;
+    position: absolute;
+    left: 620px;
+    top: 520px;
+}
