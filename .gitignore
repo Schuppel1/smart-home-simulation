@@ -1,3 +1,4 @@
 logs/*
 typescript-plugin/node_modules
 typescript-plugin/package-lock.json
+*.DS_Store
