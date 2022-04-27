@@ -127,5 +127,5 @@ function funLoad() {
 
     heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002" ); 
     heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001" ); 
-    heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.001" ); 
+    heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003" ); 
 } 
