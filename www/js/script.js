@@ -104,7 +104,7 @@ function funLoad() {
                         });
 
                         // Button wird angeschalter
-                        htmlButtonElement.style.backgroundColor = "white";
+                        htmlButtonElement.style.backgroundColor = "transparent" ;
                     }
                 }
 
