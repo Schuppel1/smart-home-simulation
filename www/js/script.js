@@ -1,10 +1,5 @@
 const modelViewerColor = document.querySelector("model-viewer#color");
 
-// const svgLampNames =  ["#imgLampLivingroom","#imgLampBedroom" ,"#imgLampBathroom" ]
-// const svgHeaterNames = ["#imgHeaterLivingroom" , "#imgHeateBedroom", "#imgHeaterBathroom"];
-
-// const modelLampNames = ["lamp.1","lamp.2","lamp.3" ];
-// const modelHeaterNames = ["heizung.001","heizung.003", "heizung.002"]; 
 let material;
 
 let lampBathroom;
@@ -66,41 +61,45 @@ function funLoad() {
         } else {
             initialized = true;
             material = modelViewerColor.model.materials;
-            function SmartHomeDevice(imgID, modelID) {
+            // Object Definition
+            function SmartHomeDevice(imgID, modelID, colorControlButton, colorSimulationDevice) {
 
                 let active = false;
                 let imgId = imgID;
                 let modelId = modelID;
                 let htmlButtonElement = document.querySelector(imgID);
+                let colConButton = colorControlButton;
+                let colSimDevice = colorSimulationDevice;
+                const disableColorSimDevice = [92 / 255, 84 / 255, 84 / 255, 1.0]; 
 
                 this.turnOn = function () {
                     if (!active) {
 
                         active = true;
-                        rgba = [0.75, 0.75, 0, 1.0]
+                        //rgba = [0.75, 0.75, 0, 1.0]
+
                         // Model wird angeschaltet
                         material.forEach(element => {
                             if (element.name == modelId) {
-                                element.pbrMetallicRoughness.setBaseColorFactor(rgba);
-                                element.setEmissiveFactor(rgba);
+                                element.pbrMetallicRoughness.setBaseColorFactor(colSimDevice);
+                                element.setEmissiveFactor(colSimDevice);
                             }
                         });
 
                         // Button wird angeschalter
-                        htmlButtonElement.style.backgroundColor = "yellow";
+                        htmlButtonElement.style.backgroundColor = colConButton;
                     }
                 }
 
                 this.turnOff = function () {
                     if (active) {
                         active = false;
-                        rgba = [92 / 255, 84 / 255, 84 / 255, 1.0];
                         // Model wird ausgeschalten
 
                         material.forEach(element => {
                             if (element.name == modelID) {
-                                element.pbrMetallicRoughness.setBaseColorFactor(rgba);
-                                element.setEmissiveFactor(rgba);
+                                element.pbrMetallicRoughness.setBaseColorFactor(disableColorSimDevice);
+                                element.setEmissiveFactor(disableColorSimDevice);
                             }
                         });
 
@@ -118,13 +117,13 @@ function funLoad() {
 
             }
 
-            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3");
-            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1");
-            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2");
+            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3","yellow",[0.75, 0.75, 0, 1.0]);
+            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1","yellow",[0.75, 0.75, 0, 1.0]);
+            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2","yellow",[0.75, 0.75, 0, 1.0]);
 
-            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002");
-            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001");
-            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003");
+            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red",[0.55, 0, 0, 1.0]);
+            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001","red",[0.55, 0, 0, 1.0] );
+            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red",[0.55, 0, 0, 1.0]);
         }
     }
 } 
