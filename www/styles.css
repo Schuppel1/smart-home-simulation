@@ -48,19 +48,22 @@ h3{
     border: none;
     background: #EAEAEA;
     margin-left: 20px;
-
+    padding: 20px;
+    margin-top: 10px;
 }
 
 .button_icon_m{
     border: none;
     background: #EAEAEA;
     margin: 0px 51px 0px 51px;
+    padding: 20px;
 }
 
 .button_icon_r{
     border: none;
     background: #EAEAEA;
     margin-right: 20px;
+    padding: 20px;
 }
 
 .slide_in{
