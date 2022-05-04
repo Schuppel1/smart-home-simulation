@@ -1,0 +1,4 @@
+FROM node:16
+
+WORKDIR /app
+CMD npm install -g sass; sass --watch --poll /usr/share//sass/example.scss /usr/share/css/styles.css

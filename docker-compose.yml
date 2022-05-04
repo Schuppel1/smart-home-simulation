@@ -34,3 +34,12 @@ services:                                    #
      - 8081:80                               # Port
     environment:                             # Umgebungsvariable fuer phpmyadmin
      - PMA_HOST=mydatabase                   # 
+  sasscompiler:
+    build:                                   #
+     context: .                              #
+     dockerfile: SassDockerfile
+    volumes:                                 # geteilte Laufwerke
+      - ./www/:/usr/share/
+      - ./app/:/app/
+    stdin_open: true                         # Wird im -it mode gestartet. Es schließt sich nicht direkt
+    tty: true   
