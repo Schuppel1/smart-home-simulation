@@ -11,14 +11,15 @@ let heaterLivingroom;
 let heaterBedroom;
 
 let initialized = false;
+let locked = false;
 
-function changeColor(colorString, room, device) {
+function changeColor(colorModel, room, device) {
     funLoad();
 
-    if(!initialized) {
+    if (!initialized) {
         return;
     }
-    if (!colorString || !room || !device) {
+    if (!colorModel || !room || !device) {
         return;
     }
     if (room == "livingroom") {
@@ -54,6 +55,33 @@ function changeColor(colorString, room, device) {
         return;
     }
 }
+
+//CustomEvents
+const rainEvent = new CustomEvent('wether-rain', { detail: { wether: "rain" } });
+const sunshineEvent = new CustomEvent('wether-sunshine', { detail: { wether: "sunshine" } });
+const stormEvent = new CustomEvent('wether-storm', { detail: { wether: "storm" } });
+const cloudyEvent = new CustomEvent('wether-cloudy', { detail: { wether: "cloudy" } });
+const timeEvent = new CustomEvent('time', { detail: { simulationTime: 0 } });
+
+function lockHome() {
+    funLoad();
+
+    imgLock = document.querySelector("#imgLock");
+    if (!initialized) {
+        return;
+    }
+
+    //Abfrage ob es auf oder zugeschlossen wird?
+    if (locked) {
+        imgLock.src = "./img/unlocked.png";
+        locked=false;
+    } else {
+        imgLock.src = "./img/locked.png";
+        locked = true;
+    }
+}
+
+
 function funLoad() {
     if (!initialized) {
         if (!modelViewerColor.model) {
@@ -70,7 +98,7 @@ function funLoad() {
                 let htmlButtonElement = document.querySelector(imgID);
                 let colConButton = colorControlButton;
                 let colSimDevice = colorSimulationDevice;
-                const disableColorSimDevice = [92 / 255, 84 / 255, 84 / 255, 1.0]; 
+                const disableColorSimDevice = [92 / 255, 84 / 255, 84 / 255, 1.0];
 
                 this.turnOn = function () {
                     if (!active) {
@@ -104,7 +132,7 @@ function funLoad() {
                         });
 
                         // Button wird angeschalter
-                        htmlButtonElement.style.backgroundColor = "transparent" ;
+                        htmlButtonElement.style.backgroundColor = "transparent";
                     }
                 }
 
@@ -117,13 +145,14 @@ function funLoad() {
 
             }
 
-            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3","yellow",[0.75, 0.75, 0, 1.0]);
-            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1","yellow",[0.75, 0.75, 0, 1.0]);
-            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2","yellow",[0.75, 0.75, 0, 1.0]);
+            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0]);
+            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1", "yellow", [0.75, 0.75, 0, 1.0]);
+            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2", "yellow", [0.75, 0.75, 0, 1.0]);
 
-            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red",[0.55, 0, 0, 1.0]);
-            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001","red",[0.55, 0, 0, 1.0] );
-            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red",[0.55, 0, 0, 1.0]);
+            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red", [0.55, 0, 0, 1.0]);
+            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001", "red", [0.55, 0, 0, 1.0]);
+            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red", [0.55, 0, 0, 1.0]);
         }
     }
-} 
+}
+
