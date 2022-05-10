@@ -50,6 +50,20 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bedroom', 'heater')"><img
                   id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
+                  <div class="on-off">
+                    <div class="slider-container">
+                      <input class="slider-on-off" id="on-off-light-bedroom" type="range" min="0" value="0" max="1"
+                        steps="1">
+                      <output class="c-range__output js-range-output" for="on-off-light-bedroom"></output>
+                    </div>
+                  </div>
+                  <label class="c-range__label" for="on-off-light-bedroom">on off</label>
+                  <div class="c-range">
+                    <div class="c-range__holder">
+                      <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                      <output class="c-range__output js-range-output" for="hue"></output>
+                    </div>
+                  </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room3">
@@ -58,6 +72,20 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bathroom', 'heater')"><img
                   id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
+                  <div class="on-off">
+                    <div class="slider-container">
+                      <input class="slider-on-off" id="on-off-light-bathroom" type="range" min="0" value="0" max="1"
+                        steps="1">
+                      <output class="c-range__output js-range-output" for="on-off-light-bathroom"></output>
+                    </div>
+                  </div>
+                  <label class="c-range__label" for="on-off-light-bathroom">on off</label>
+                  <div class="c-range">
+                    <div class="c-range__holder">
+                      <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                      <output class="c-range__output js-range-output" for="hue"></output>
+                    </div>
+                  </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
           </div>
