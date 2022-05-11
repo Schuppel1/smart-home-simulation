@@ -21,20 +21,15 @@
             <h2>Beispiel Tinyhouse</h2>
           </div>
           <div class="rooms">
+            <button type="button" class="btn btn-warning">Manuell</button>
+            <button type="button" class="btn btn-warning">Automatisiert</button>
+
             <div class="room1">
               <h3>Wohnzimmer</h3>
               <button class="button_icon_l" onclick="changeColor('notSet','livingroom', 'lamp')"><img
                   id="imgLampLivingroom" class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','livingroom', 'heater')"><img
                   id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
-              <div class="on-off">
-                <div class="slider-container">
-                  <input class="slider-on-off" id="on-off-light-livingroom" type="range" min="0" value="0" max="1"
-                    steps="1">
-                  <output class="c-range__output js-range-output" for="on-off-light-livingroom"></output>
-                </div>
-              </div>
-              <label class="c-range__label" for="on-off-light-livingroom">on off</label>
               <div class="c-range">
                 <div class="c-range__holder">
                   <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
@@ -50,14 +45,6 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bedroom', 'heater')"><img
                   id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
-                  <div class="on-off">
-                    <div class="slider-container">
-                      <input class="slider-on-off" id="on-off-light-bedroom" type="range" min="0" value="0" max="1"
-                        steps="1">
-                      <output class="c-range__output js-range-output" for="on-off-light-bedroom"></output>
-                    </div>
-                  </div>
-                  <label class="c-range__label" for="on-off-light-bedroom">on off</label>
                   <div class="c-range">
                     <div class="c-range__holder">
                       <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
@@ -72,20 +59,19 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bathroom', 'heater')"><img
                   id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
-                  <div class="on-off">
-                    <div class="slider-container">
-                      <input class="slider-on-off" id="on-off-light-bathroom" type="range" min="0" value="0" max="1"
-                        steps="1">
-                      <output class="c-range__output js-range-output" for="on-off-light-bathroom"></output>
-                    </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <div class="c-range">
+                      <div class="c-range__holder">
+                        <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                        <output class="c-range__output js-range-output" for="hue"></output>
+                      </div>
+                    </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
+
                   </div>
-                  <label class="c-range__label" for="on-off-light-bathroom">on off</label>
-                  <div class="c-range">
-                    <div class="c-range__holder">
-                      <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
-                      <output class="c-range__output js-range-output" for="hue"></output>
-                    </div>
-                  </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
+                 
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
           </div>
