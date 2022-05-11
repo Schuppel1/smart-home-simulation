@@ -139,72 +139,6 @@ model-viewer {
   --transition-easing: ease-out;
 }
 
-/*------------------------------------*\
-#GENERIC
-\*------------------------------------*/
-/*
-	Generic: Page
-	---
-	Global page styles + universal box-sizing:
-*/
-html {
-  line-height: 1.5;
-  font-family: var(--alpha-font-family);
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  padding: 24px;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-alpha);
-  color: var(--color-dark);
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-/*------------------------------------*\
-#COMPONENTS
-\*------------------------------------*/
-/*
-	Component: Range
-*/
-.c-range {
-  position: relative;
-  width: 100%;
-  max-width: 20em;
-  padding: 12px 24px;
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  border-radius: var(--border-radius);
-}
-
-.c-range__holder {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.c-range__label {
-  position: absolute;
-  font-size: 12px;
-  line-height: 16px;
-  padding: 16px;
-  bottom: -48px;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
 .c-range__slider {
   width: 100%;
   margin: 0;
@@ -265,42 +199,6 @@ body {
 }
 .c-range__slider::-ms-tooltip {
   display: none;
-}
-.c-range__slider:focus + .c-range__output, .c-range__slider:active + .c-range__output {
-  opacity: 1;
-}
-
-.c-range__output {
-  opacity: 0;
-  position: absolute;
-  left: calc((var(--hue) / 360 * 100%) - 12px);
-  transform: translate(calc(var(--hue) / 360 * -50%), 0);
-  width: 48px;
-  top: -36px;
-  padding: 4px;
-  font-size: 12px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 12px;
-  background-color: var(--color-dark);
-  color: white;
-  transition-property: opacity;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--transition-easing);
-}
-.c-range__output::before {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  margin-left: -4px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 4px 4px 0 4px;
-  border-color: var(--color-dark) transparent transparent transparent;
-  background-color: blue;
 }
 
 /*# sourceMappingURL=styles.css.map */
