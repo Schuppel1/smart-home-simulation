@@ -23,22 +23,23 @@
           <div class="rooms">
             <div class="room1">
               <h3>Wohnzimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('notSet','livingroom', 'lamp')"><img
+              <button class="button_icon_l" onclick="changeColor('livingroom', 'lamp')"><img
                   id="imgLampLivingroom" class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m" onclick="changeColor('notSet','livingroom', 'heater')"><img
+              <button class="button_icon_m" onclick="changeColor('livingroom', 'heater')"><img
                   id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
               <div class="on-off">
                 <div class="slider-container">
                   <input class="slider-on-off" id="on-off-light-livingroom" type="range" min="0" value="0" max="1"
                     steps="1">
-                  <output class="c-range__output js-range-output" for="on-off-light-livingroom"></output>
+                  <output class="c-range__output on-off-output" for="on-off-light-livingroom"></output>
                 </div>
               </div>
               <label class="c-range__label" for="on-off-light-livingroom">on off</label>
               <div class="c-range">
                 <div class="c-range__holder">
-                  <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
-                  <output class="c-range__output js-range-output" for="hue"></output>
+                  <!-- Das ist der RGB input Slider  -->
+                  <input class="c-range__slider RGB-input-livingroom" id="hue" type="range" value="50" max="360">
+                  <output class="c-range__output RGB-output-livingroom" for="hue"></output>
                 </div>
               </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
 
@@ -46,17 +47,17 @@
             </div>
             <div class="room2">
               <h3>Schlafzimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('notSet','bedroom', 'lamp')"><img id="imgLampBedroom"
+              <button class="button_icon_l" onclick="changeColor('bedroom', 'lamp')"><img id="imgLampBedroom"
                   class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m" onclick="changeColor('notSet','bedroom', 'heater')"><img
+              <button class="button_icon_m" onclick="changeColor('bedroom', 'heater')"><img
                   id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room3">
               <h3>Badezimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('notSet','bathroom', 'lamp')"><img id="imgLampBathroom"
+              <button class="button_icon_l" onclick="changeColor('bathroom', 'lamp')"><img id="imgLampBathroom"
                   class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m" onclick="changeColor('notSet','bathroom', 'heater')"><img
+              <button class="button_icon_m" onclick="changeColor('bathroom', 'heater')"><img
                   id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
