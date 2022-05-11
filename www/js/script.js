@@ -156,3 +156,35 @@ function funLoad() {
     }
 }
 
+// Monitoring
+
+function countTemperatureRoom1() {
+    var i = 15;
+    var inv = setInterval(function() {     
+        if(i < 25)
+            document.getElementById("counterRoom1").innerHTML = ++i;
+        else
+            clearInterval(inv);
+    }, 3000 / 1);
+}
+
+function countTemperatureRoom2() {
+    var i = 15;
+    var inv = setInterval(function() {     
+        if(i < 25)
+            document.getElementById("counterRoom2").innerHTML = ++i;
+        else
+            clearInterval(inv);
+    }, 3000 / 1);
+}
+
+function countTemperatureRoom3() {
+    var i = 15;
+    var inv = setInterval(function() {     
+        if(i < 25)
+            document.getElementById("counterRoom3").innerHTML = ++i;
+        else
+            clearInterval(inv);
+    }, 3000 / 1);
+}
+
