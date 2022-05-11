@@ -1,7 +1,10 @@
 const modelViewerColor = document.querySelector("model-viewer#color");
-const RGBInputLivingRoom = document.querySelector('.RGB-input-livingroom');
-const RGBOutputLivingRoom = document.querySelector('.RGB-output-livingroom');
-let RGBColorLivingRoom = [255, 255, 0]
+const RGBInputLivingroom = document.querySelector('.RGB-input-livingroom');
+const RGBInputBedroom = document.querySelector('.RGB-input-bedroom');
+const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
+let RGBColorLivingroom = [255, 255, 0]
+let RGBColorBedroom = [255, 255, 0]
+let RGBColorBathroom = [255, 255, 0]
 
 function rgbArrayToString(rgbArray) {
     return "rgb(" + rgbArray[0] + "," + rgbArray[1] + "," + rgbArray[2] + ")"
@@ -49,11 +52,26 @@ function hslToRgb(h, s, l) {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-RGBInputLivingRoom.addEventListener('input', function () {
-    RGBOutputLivingRoom.value = RGBInputLivingRoom.value + '°';
-    RGBColorLivingRoom = hslToRgb(RGBInputLivingRoom.value / 360, 1, 0.5)
+RGBInputLivingroom.addEventListener('input', function () {
+    RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5)
     if(initialized) {
-        lampLivingroom.switchColor(RGBColorLivingRoom)
+        lampLivingroom.switchColor(RGBColorLivingroom)
+    }
+    
+});
+
+RGBInputBathroom.addEventListener('input', function () {
+    RGBColorBathroom = hslToRgb(RGBInputBathroom.value / 360, 1, 0.5)
+    if(initialized) {
+        lampBathroom.switchColor(RGBColorBathroom)
+    }
+    
+});
+
+RGBInputBedroom.addEventListener('input', function () {
+    RGBColorBedroom= hslToRgb(RGBInputBedroom.value / 360, 1, 0.5)
+    if(initialized) {
+        lampBedroom.switchColor(RGBColorBedroom)
     }
     
 });
@@ -85,7 +103,6 @@ function changeColor(room, device) {
         if (device == "heater") {
             heaterLivingroom.switch();
         } else if (device == "lamp") {
-            lampLivingroom.switchColor(RGBColorLivingRoom)
             lampLivingroom.switch();
         } else {
             console.log("Angegebene Device nicht gefunden")
