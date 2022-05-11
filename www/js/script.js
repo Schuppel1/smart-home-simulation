@@ -23,6 +23,8 @@ let bathroomTempWant = 25;
 let livingroomTempIs = outSideTemp;
 let livingroomTempWant = 25;
 let livingroomTimerStarted = false;
+let bedroomTimerStarted = false;
+let bathroomTimerStarted = false; 
 
 
 function changeColor(colorModel, room, device) {
@@ -194,6 +196,62 @@ function countTemperatureLivingroom() {
                 }else {
                     clearInterval(inv);
                     livingroomTimerStarted = false;
+                    }
+            }, 3000);
+        }
+    }
+}
+
+function countTemperatureBedroom() {
+    if(initialized) {
+
+        if (!bedroomTimerStarted) {
+            bedroomTimerStarted = true;
+            var inv = setInterval(function() {    
+                if(bedroomTempIs <= bedroomTempWant && bedroomTempIs >= outSideTemp ) {
+                    if(heaterBedroom.isActive() && bedroomTempIs < bedroomTempWant) {
+                        //Muss geheitzt werden
+                        bedroomTempIs++;
+                    } else if ((heaterBedroom.isActive() && bedroomTempIs == bedroomTempWant)) {
+                        // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
+                    } else if (!heaterBedroom.isActive() && bedroomTempIs == outSideTemp ) {
+                        clearInterval(inv);
+                        bedroomTimerStarted = false;
+                    } else {
+                        bedroomTempIs--;
+                    }
+                    document.getElementById("counterRoom2").innerHTML = bedroomTempIs.toString();
+                }else {
+                    clearInterval(inv);
+                    bedroomTimerStarted = false;
+                    }
+            }, 3000);
+        }
+    }
+}
+
+function countTemperatureBathroom() {
+    if(initialized) {
+
+        if (!bathroomTimerStarted) {
+            bathroomTimerStarted = true;
+            var inv = setInterval(function() {    
+                if(bathroomTempIs <= bathroomTempWant && bathroomTempIs >= outSideTemp ) {
+                    if(heaterBathroom.isActive() && bathroomTempIs < bathroomTempWant) {
+                        //Muss geheitzt werden
+                        bathroomTempIs++;
+                    } else if ((heaterBathroom.isActive() && bathroomTempIs == bathroomTempWant)) {
+                        // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
+                    } else if (!heaterBathroom.isActive() && bathroomTempIs == outSideTemp ) {
+                        clearInterval(inv);
+                        bathroomTimerStarted = false;
+                    } else {
+                        bathroomTempIs--;
+                    }
+                    document.getElementById("counterRoom3").innerHTML = bathroomTempIs.toString();
+                }else {
+                    clearInterval(inv);
+                    bathroomTimerStarted = false;
                     }
             }, 3000);
         }
