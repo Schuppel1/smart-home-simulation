@@ -5,6 +5,18 @@ const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
 let RGBColorLivingroom = [255, 255, 0]
 let RGBColorBedroom = [255, 255, 0]
 let RGBColorBathroom = [255, 255, 0]
+let material;
+
+let lampBathroom;
+let lampLivingroom;
+let lampBedroom;
+
+let heaterBathroom;
+let heaterLivingroom;
+let heaterBedroom;
+
+let initialized = false;
+let locked = false;
 
 function rgbArrayToString(rgbArray) {
     return "rgb(" + rgbArray[0] + "," + rgbArray[1] + "," + rgbArray[2] + ")"
@@ -76,20 +88,6 @@ RGBInputBedroom.addEventListener('input', function () {
     
 });
 
-
-let material;
-
-let lampBathroom;
-let lampLivingroom;
-let lampBedroom;
-
-let heaterBathroom;
-let heaterLivingroom;
-let heaterBedroom;
-
-let initialized = false;
-let locked = false;
-
 function changeColor(room, device) {
     funLoad();
 
@@ -148,13 +146,28 @@ function lockHome() {
         return;
     }
 
+    modelId = "lockDisplay"
+    colorLocked = rgbArrayToZeroOneArray([226,0,0])
+    colorOpen = rgbArrayToZeroOneArray([22,173,0])
     //Abfrage ob es auf oder zugeschlossen wird?
     if (locked) {
         imgLock.src = "./img/unlocked.png";
         locked = false;
+        material.forEach(element => {
+            if (element.name == modelId) {
+                element.pbrMetallicRoughness.setBaseColorFactor(colorOpen);
+                element.setEmissiveFactor(colorOpen);
+            }
+        });
     } else {
         imgLock.src = "./img/locked.png";
         locked = true;
+        material.forEach(element => {
+            if (element.name == modelId) {
+                element.pbrMetallicRoughness.setBaseColorFactor(colorLocked);
+                element.setEmissiveFactor(colorLocked);
+            }
+        });
     }
 }
 
