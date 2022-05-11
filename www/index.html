@@ -10,9 +10,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
-
 <body>
-
   <div class="container-fluid">
     <div class="row">
       <div class="col">
@@ -23,17 +21,19 @@
           <div class="rooms">
             <button type="button" class="btn btn-warning">Manuell</button>
             <button type="button" class="btn btn-warning">Automatisiert</button>
-
             <div class="room1">
               <h3>Wohnzimmer</h3>
               <button class="button_icon_l" onclick="changeColor('notSet','livingroom', 'lamp')"><img
                   id="imgLampLivingroom" class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','livingroom', 'heater')"><img
                   id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
-              <div class="c-range">
-                <div class="c-range__holder">
-                  <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
-                  <output class="c-range__output js-range-output" for="hue"></output>
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
+                  </div>
                 </div>
               </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
 
@@ -45,12 +45,15 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bedroom', 'heater')"><img
                   id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
-                  <div class="c-range">
-                    <div class="c-range__holder">
-                      <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
-                      <output class="c-range__output js-range-output" for="hue"></output>
-                    </div>
-                  </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
+                  </div>
+                </div>
+              </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room3">
@@ -59,40 +62,37 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('notSet','bathroom', 'heater')"><img
                   id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown button
-                    </button>
-                    <div class="c-range">
-                      <div class="c-range__holder">
-                        <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
-                        <output class="c-range__output js-range-output" for="hue"></output>
-                      </div>
-                    </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
-
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
                   </div>
-                 
-              <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
+                </div>
+              </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
+              
             </div>
-          </div>
-          <!-- <button class="slide_in"><img src="./img/arrow.png"></button> -->
-        </div>
-      </div>
-      <div class="col">
-        <div class="simulation">
-          <div class="title">
-            <h2>Smart-Home-Simulation</h2>
-          </div>
-          <model-viewer id="color" bounds="tight" enable-pan src="./models/heizung-graue-wand.glb" ar
-            ar-modes="webxr scene-viewer quick-look" camera-controls environment-image="./models/HDR_040_Field.hdr"
-            poster="./img/poster-1.webp" shadow-intensity="1" skybox-image="./models/HDR_040_Field.hdr">
-          </model-viewer>
 
-          <button class="button_icon_l" onclick="lockHome()"><img id="imgLock" class="icon"
-              src="./img/unlocked.png"></button>
+            <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
+          </div>
         </div>
+        <!-- <button class="slide_in"><img src="./img/arrow.png"></button> -->
       </div>
+    </div>
+    <div class="col">
+      <div class="simulation">
+        <div class="title">
+          <h2>Smart-Home-Simulation</h2>
+        </div>
+        <model-viewer id="color" bounds="tight" enable-pan src="./models/heizung-graue-wand.glb" ar
+          ar-modes="webxr scene-viewer quick-look" camera-controls environment-image="./models/HDR_040_Field.hdr"
+          poster="./img/poster-1.webp" shadow-intensity="1" skybox-image="./models/HDR_040_Field.hdr">
+        </model-viewer>
 
+        <button class="button_icon_l" onclick="lockHome()"><img id="imgLock" class="icon"
+            src="./img/unlocked.png"></button>
+      </div>
     </div>
   </div>
 

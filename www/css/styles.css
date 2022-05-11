@@ -34,9 +34,9 @@ h3 {
 .room2,
 .room3 {
   background-color: white;
-  width: 567px;
-  height: 205px;
-  margin-top: 48px;
+  width: 560px;
+  height: 225px;
+  margin-top: 40px;
 }
 
 .room1 h3,
@@ -56,13 +56,15 @@ h3 {
   margin-left: 20px;
   padding: 20px;
   margin-top: 10px;
+  float: left;
 }
 
 .button_icon_m {
   border: none;
   background: #EAEAEA;
-  margin: 0px 51px 0px 51px;
+  margin: 10px 51px 0px 51px;
   padding: 20px;
+  float: left;
 }
 
 .button_icon_r {
@@ -79,6 +81,38 @@ h3 {
   position: absolute;
   left: 620px;
   top: 520px;
+}
+
+.dropdown {
+  display: inline-block;
+  float: left;
+  position: absolute;
+  top: 117px;
+  right: 283px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.span-paint {
+  padding: 8px;
+  background-color: #EAEAEA;
+}
+
+.paintbrush {
+  width: 30px;
+  height: 30px;
 }
 
 model-viewer {
