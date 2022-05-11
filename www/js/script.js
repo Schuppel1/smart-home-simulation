@@ -1,17 +1,29 @@
+//Controll and must HaveObjetcs
 const modelViewerColor = document.querySelector("model-viewer#color");
-
+let initialized = false;
+let locked = false;
 let material;
 
+//LampObjects
 let lampBathroom;
 let lampLivingroom;
 let lampBedroom;
 
+//Heater Objects
 let heaterBathroom;
 let heaterLivingroom;
 let heaterBedroom;
 
-let initialized = false;
-let locked = false;
+//Temperatur
+let outSideTemp = 15;
+let bedroomTempIs = outSideTemp;
+let bedroomTempWant = 25;
+let bathroomTempIs = outSideTemp;
+let bathroomTempWant = 25;
+let livingroomTempIs = outSideTemp;
+let livingroomTempWant = 25;
+let livingroomTimerStarted = false;
+
 
 function changeColor(colorModel, room, device) {
     funLoad();
@@ -143,6 +155,10 @@ function funLoad() {
                         this.turnOn();
                 }
 
+                this.isActive = function () {
+                    return active;
+                }
+
             }
 
             lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0]);
@@ -156,35 +172,31 @@ function funLoad() {
     }
 }
 
-// Monitoring
+function countTemperatureLivingroom() {
+    if(initialized) {
 
-function countTemperatureRoom1() {
-    var i = 15;
-    var inv = setInterval(function() {     
-        if(i < 25)
-            document.getElementById("counterRoom1").innerHTML = ++i;
-        else
-            clearInterval(inv);
-    }, 3000 / 1);
-}
-
-function countTemperatureRoom2() {
-    var i = 15;
-    var inv = setInterval(function() {     
-        if(i < 25)
-            document.getElementById("counterRoom2").innerHTML = ++i;
-        else
-            clearInterval(inv);
-    }, 3000 / 1);
-}
-
-function countTemperatureRoom3() {
-    var i = 15;
-    var inv = setInterval(function() {     
-        if(i < 25)
-            document.getElementById("counterRoom3").innerHTML = ++i;
-        else
-            clearInterval(inv);
-    }, 3000 / 1);
+        if (!livingroomTimerStarted) {
+            livingroomTimerStarted = true;
+            var inv = setInterval(function() {    
+                if(livingroomTempIs <= livingroomTempWant && livingroomTempIs >= outSideTemp ) {
+                    if(heaterLivingroom.isActive() && livingroomTempIs < livingroomTempWant) {
+                        //Muss geheitzt werden
+                        livingroomTempIs++;
+                    } else if ((heaterLivingroom.isActive() && livingroomTempIs == livingroomTempWant)) {
+                        // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
+                    } else if (!heaterLivingroom.isActive() && livingroomTempIs == outSideTemp ) {
+                        clearInterval(inv);
+                        livingroomTimerStarted = false;
+                    } else {
+                        livingroomTempIs--;
+                    }
+                    document.getElementById("counterRoom1").innerHTML = livingroomTempIs.toString();
+                }else {
+                    clearInterval(inv);
+                    livingroomTimerStarted = false;
+                    }
+            }, 3000);
+        }
+    }
 }
 
