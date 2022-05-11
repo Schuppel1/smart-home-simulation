@@ -12,34 +12,29 @@
 </head>
 
 <body>
-
   <div class="container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col-4">
         <div class="controls">
           <div class="title">
             <h2>Beispiel Tinyhouse</h2>
           </div>
           <div class="rooms">
+            <button type="button" class="btn btn-warning">Manuell</button>
+            <button type="button" class="btn btn-warning">Automatisiert</button>
             <div class="room1">
               <h3>Wohnzimmer</h3>
               <button class="button_icon_l" onclick="changeColor('livingroom', 'lamp')"><img
                   id="imgLampLivingroom" class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('livingroom', 'heater')"><img
                   id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
-              <div class="on-off">
-                <div class="slider-container">
-                  <input class="slider-on-off" id="on-off-light-livingroom" type="range" min="0" value="0" max="1"
-                    steps="1">
-                  <output class="c-range__output on-off-output" for="on-off-light-livingroom"></output>
-                </div>
-              </div>
-              <label class="c-range__label" for="on-off-light-livingroom">on off</label>
-              <div class="c-range">
-                <div class="c-range__holder">
-                  <!-- Das ist der RGB input Slider  -->
-                  <input class="c-range__slider RGB-input-livingroom" id="hue" type="range" value="50" max="360">
-                  <output class="c-range__output RGB-output-livingroom" for="hue"></output>
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
+                  </div>
                 </div>
               </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
 
@@ -51,6 +46,15 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('bedroom', 'heater')"><img
                   id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
+                  </div>
+                </div>
+              </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room3">
@@ -59,13 +63,25 @@
                   class="icon" src="./img/lightbulb.png"></button>
               <button class="button_icon_m" onclick="changeColor('bathroom', 'heater')"><img
                   id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
-              <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
+              <div class="dropdown">
+                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                <div class="dropdown-content">
+                  <div class="c-range__holder">
+                    <input class="c-range__slider js-range-input" id="hue" type="range" value="50" max="360">
+                    <output class="c-range__output js-range-output" for="hue"></output>
+                  </div>
+                </div>
+              </div> <!--  https://codepen.io/simoncoudeville/pen/MPLwMe -->
+
             </div>
+
+            <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
           </div>
-          <!-- <button class="slide_in"><img src="./img/arrow.png"></button> -->
         </div>
+        <!-- <button class="slide_in"><img src="./img/arrow.png"></button> -->
       </div>
-      <div class="col">
+
+      <div class="col-8">
         <div class="simulation">
           <div class="title">
             <h2>Smart-Home-Simulation</h2>
@@ -79,17 +95,17 @@
               src="./img/unlocked.png"></button>
         </div>
       </div>
-
     </div>
   </div>
 
 
 
-  <script src="./js/script.js" defer></script>
-  <script type="module" src="./js/model-viewer.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+
+    <script src="./js/script.js" defer></script>
+    <script type="module" src="./js/model-viewer.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
 
 
 
