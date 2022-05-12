@@ -6,6 +6,10 @@ Welche Programme werden benötigt:
 2. Browser zum ansprechen
 3. Git
 
+Zunächst muss im Terminal folgender Befehl eingegeben werden (dadurch können die großen Models heruntergeladen werden): 
+
+    git lfs install
+
 Das Repo muss gecloned werden. Dazu kann der Befehl:
 
     git clone https://github.com/Schuppel1/smart-home-simulation.git
