@@ -103,7 +103,6 @@ h3 {
 .button_icon_l {
   border: none;
   background: #fff;
-  margin-left: 15%;
   padding: 20px;
   margin-top: 10px;
   float: left;
@@ -113,10 +112,20 @@ h3 {
 .button_icon_m {
   border: none;
   background: #fff;
-  margin: 10px 51px 0px 51px;
+  margin-top: 10px;
   padding: 20px;
   float: left;
   border-radius: 27px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .slide_in {
@@ -130,9 +139,9 @@ h3 {
 
 .dropdown {
   display: inline-block;
-  position: absolute;
-  top: 115px;
-  right: 277px;
+  right: 25%;
+  position: relative;
+  top: 5px;
 }
 
 .dropdown-content {
@@ -150,10 +159,12 @@ h3 {
 }
 
 .span-paint {
-  padding: 8px;
+  padding: 6px;
   background-color: #fff;
   border-radius: 15px;
   position: relative;
+  float: left;
+  z-index: 1;
 }
 
 .paintbrush {
