@@ -367,12 +367,16 @@ function countTemperatureBathroom() {
         }
     }
 }
-
-
+const simTimeSlider = document.querySelector('#simulationTimeSlider');
 const minsHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
 let mins = 0; //0-59
 let hour = 3; //0-12
+
+
+simTimeSlider.addEventListener("change", changeTime)
+
+
 
 function setDate() {
     // +90 Kommen vom Startpunkt der Rotate Funktion. 
@@ -384,5 +388,12 @@ function setDate() {
   //hourHand.style.transform = `rotate(${hourDegrees}deg)`;
   hourHand.style.transform = "rotate("+hourDegrees.toString()+"deg)";
 }
+
+function changeTime() {
+    hour = (parseInt(simTimeSlider.value) +  6 ) %12
+    console.log("Slider Value "+simTimeSlider.value)
+    console.log("calc hour: "+hour)
+    setDate() 
+   }
 
 
