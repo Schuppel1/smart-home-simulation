@@ -1,7 +1,16 @@
 //Controll and must HaveObjetcs
 const modelViewerColor = document.querySelector("model-viewer#color");
+
 let initialized = false;
 let locked = false;
+
+const RGBInputLivingroom = document.querySelector('.RGB-input-livingroom');
+const RGBInputBedroom = document.querySelector('.RGB-input-bedroom');
+const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
+let RGBColorLivingroom = [255, 255, 0]
+let RGBColorBedroom = [255, 255, 0]
+let RGBColorBathroom = [255, 255, 0]
+
 let material;
 
 //LampObjects
@@ -27,13 +36,83 @@ let bedroomTimerStarted = false;
 let bathroomTimerStarted = false; 
 
 
-function changeColor(colorModel, room, device) {
+function rgbArrayToString(rgbArray) {
+    return "rgb(" + rgbArray[0] + "," + rgbArray[1] + "," + rgbArray[2] + ")"
+}
+
+function rgbArrayToZeroOneArray(rgbArray) {
+    return [rgbArray[0] / 255, rgbArray[1] / 255, rgbArray[2] / 255, 1]
+}
+
+
+
+/**
+ * Converts an HSL color value to RGB. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes h, s, and l are contained in the set [0, 1] and
+ * returns r, g, and b in the set [0, 255].
+ *
+ * @param   {number}  h       The hue
+ * @param   {number}  s       The saturation
+ * @param   {number}  l       The lightness
+ * @return  {Array}           The RGB representation
+ */
+function hslToRgb(h, s, l) {
+    var r, g, b;
+
+    if (s == 0) {
+        r = g = b = l; // achromatic
+    } else {
+        var hue2rgb = function hue2rgb(p, q, t) {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        }
+
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+    }
+
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
+
+RGBInputLivingroom.addEventListener('input', function () {
+    RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5)
+    if(initialized) {
+        lampLivingroom.switchColor(RGBColorLivingroom)
+    }
+    
+});
+
+RGBInputBathroom.addEventListener('input', function () {
+    RGBColorBathroom = hslToRgb(RGBInputBathroom.value / 360, 1, 0.5)
+    if(initialized) {
+        lampBathroom.switchColor(RGBColorBathroom)
+    }
+    
+});
+
+RGBInputBedroom.addEventListener('input', function () {
+    RGBColorBedroom= hslToRgb(RGBInputBedroom.value / 360, 1, 0.5)
+    if(initialized) {
+        lampBedroom.switchColor(RGBColorBedroom)
+    }
+    
+});
+
+function changeColor(room, device) {
     funLoad();
 
     if (!initialized) {
         return;
     }
-    if (!colorModel || !room || !device) {
+    if (!room || !device) {
         return;
     }
     if (room == "livingroom") {
@@ -85,13 +164,28 @@ function lockHome() {
         return;
     }
 
+    modelId = "lockDisplay"
+    colorLocked = rgbArrayToZeroOneArray([226,0,0])
+    colorOpen = rgbArrayToZeroOneArray([22,173,0])
     //Abfrage ob es auf oder zugeschlossen wird?
     if (locked) {
         imgLock.src = "./img/unlocked.png";
-        locked=false;
+        locked = false;
+        material.forEach(element => {
+            if (element.name == modelId) {
+                element.pbrMetallicRoughness.setBaseColorFactor(colorOpen);
+                element.setEmissiveFactor(colorOpen);
+            }
+        });
     } else {
         imgLock.src = "./img/locked.png";
         locked = true;
+        material.forEach(element => {
+            if (element.name == modelId) {
+                element.pbrMetallicRoughness.setBaseColorFactor(colorLocked);
+                element.setEmissiveFactor(colorLocked);
+            }
+        });
     }
 }
 
@@ -147,6 +241,22 @@ function funLoad() {
 
                         // Button wird angeschalter
                         htmlButtonElement.style.backgroundColor = "transparent";
+                    }
+                }
+
+                this.switchColor = function (rgbArray) {
+                    colConButton = rgbArrayToString(rgbArray)
+                    colSimDevice = rgbArrayToZeroOneArray(rgbArray)
+                    if(active){
+                        material.forEach(element => {
+                            if (element.name == modelId) {
+                                element.pbrMetallicRoughness.setBaseColorFactor(colSimDevice);
+                                element.setEmissiveFactor(colSimDevice);
+                            }
+                        });
+
+                        // Button wird angeschalter
+                        htmlButtonElement.style.backgroundColor = colConButton;
                     }
                 }
 
