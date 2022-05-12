@@ -7,6 +7,21 @@ let locked = false;
 const RGBInputLivingroom = document.querySelector('.RGB-input-livingroom');
 const RGBInputBedroom = document.querySelector('.RGB-input-bedroom');
 const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
+
+//Time Slider
+
+//23 - 04 Nacht
+//05 - 10 Morgens
+//11 - 16 Mittags
+//17 - 22 Abends 
+
+const simTimeSlider = document.querySelector('#simulationTimeSlider');
+const minsHand = document.querySelector('.min-hand');
+const hourHand = document.querySelector('.hour-hand');
+let mins = 0; //0-59
+let hour = 3; //0-12
+
+
 let RGBColorLivingroom = [255, 255, 0]
 let RGBColorBedroom = [255, 255, 0]
 let RGBColorBathroom = [255, 255, 0]
@@ -24,7 +39,9 @@ let heaterLivingroom;
 let heaterBedroom;
 
 //Temperatur
-let outSideTemp = 15;
+const outSideTempinputField = document.querySelector('#outsideTemp');
+let outSideTemp = outSideTempinputField.value;
+console.log(outSideTemp)
 let bedroomTempIs = outSideTemp;
 let bedroomTempWant = 25;
 let bathroomTempIs = outSideTemp;
@@ -33,9 +50,42 @@ let livingroomTempIs = outSideTemp;
 let livingroomTempWant = 25;
 let livingroomTimerStarted = false;
 let bedroomTimerStarted = false;
-let bathroomTimerStarted = false; 
+let bathroomTimerStarted = false;
 
 
+//Eventlistener
+RGBInputLivingroom.addEventListener('input', function () {
+    RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5)
+    if (initialized) {
+        lampLivingroom.switchColor(RGBColorLivingroom)
+    }
+
+});
+
+RGBInputBathroom.addEventListener('input', function () {
+    RGBColorBathroom = hslToRgb(RGBInputBathroom.value / 360, 1, 0.5)
+    if (initialized) {
+        lampBathroom.switchColor(RGBColorBathroom)
+    }
+
+});
+
+RGBInputBedroom.addEventListener('input', function () {
+    RGBColorBedroom = hslToRgb(RGBInputBedroom.value / 360, 1, 0.5)
+    if (initialized) {
+        lampBedroom.switchColor(RGBColorBedroom)
+    }
+
+});
+
+simTimeSlider.addEventListener("change", changeTime)
+outSideTempinputField.addEventListener("change",function () {
+    outSideTemp = outSideTempinputField.value;
+
+
+});
+
+//Funktionen
 function rgbArrayToString(rgbArray) {
     return "rgb(" + rgbArray[0] + "," + rgbArray[1] + "," + rgbArray[2] + ")"
 }
@@ -82,29 +132,7 @@ function hslToRgb(h, s, l) {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-RGBInputLivingroom.addEventListener('input', function () {
-    RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5)
-    if(initialized) {
-        lampLivingroom.switchColor(RGBColorLivingroom)
-    }
-    
-});
 
-RGBInputBathroom.addEventListener('input', function () {
-    RGBColorBathroom = hslToRgb(RGBInputBathroom.value / 360, 1, 0.5)
-    if(initialized) {
-        lampBathroom.switchColor(RGBColorBathroom)
-    }
-    
-});
-
-RGBInputBedroom.addEventListener('input', function () {
-    RGBColorBedroom= hslToRgb(RGBInputBedroom.value / 360, 1, 0.5)
-    if(initialized) {
-        lampBedroom.switchColor(RGBColorBedroom)
-    }
-    
-});
 
 function changeColor(room, device) {
     funLoad();
@@ -165,8 +193,8 @@ function lockHome() {
     }
 
     modelId = "lockDisplay"
-    colorLocked = rgbArrayToZeroOneArray([226,0,0])
-    colorOpen = rgbArrayToZeroOneArray([22,173,0])
+    colorLocked = rgbArrayToZeroOneArray([226, 0, 0])
+    colorOpen = rgbArrayToZeroOneArray([22, 173, 0])
     //Abfrage ob es auf oder zugeschlossen wird?
     if (locked) {
         imgLock.src = "./img/unlocked.png";
@@ -247,7 +275,7 @@ function funLoad() {
                 this.switchColor = function (rgbArray) {
                     colConButton = rgbArrayToString(rgbArray)
                     colSimDevice = rgbArrayToZeroOneArray(rgbArray)
-                    if(active){
+                    if (active) {
                         material.forEach(element => {
                             if (element.name == modelId) {
                                 element.pbrMetallicRoughness.setBaseColorFactor(colSimDevice);
@@ -285,115 +313,109 @@ function funLoad() {
 }
 
 function countTemperatureLivingroom() {
-    if(initialized) {
+    if (initialized) {
 
         if (!livingroomTimerStarted) {
             livingroomTimerStarted = true;
-            var inv = setInterval(function() {    
-                if(livingroomTempIs <= livingroomTempWant && livingroomTempIs >= outSideTemp ) {
-                    if(heaterLivingroom.isActive() && livingroomTempIs < livingroomTempWant) {
+            var inv = setInterval(function () {
+                if (livingroomTempIs <= livingroomTempWant && livingroomTempIs >= outSideTemp) {
+                    if (heaterLivingroom.isActive() && livingroomTempIs < livingroomTempWant) {
                         //Muss geheitzt werden
                         livingroomTempIs++;
                     } else if ((heaterLivingroom.isActive() && livingroomTempIs == livingroomTempWant)) {
                         // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
-                    } else if (!heaterLivingroom.isActive() && livingroomTempIs == outSideTemp ) {
+                    } else if (!heaterLivingroom.isActive() && livingroomTempIs == outSideTemp) {
                         clearInterval(inv);
                         livingroomTimerStarted = false;
                     } else {
                         livingroomTempIs--;
                     }
                     document.getElementById("counterRoom1").innerHTML = livingroomTempIs.toString();
-                }else {
+                } else {
                     clearInterval(inv);
                     livingroomTimerStarted = false;
-                    }
+                }
             }, 3000);
         }
     }
 }
 
 function countTemperatureBedroom() {
-    if(initialized) {
+    if (initialized) {
 
         if (!bedroomTimerStarted) {
             bedroomTimerStarted = true;
-            var inv = setInterval(function() {    
-                if(bedroomTempIs <= bedroomTempWant && bedroomTempIs >= outSideTemp ) {
-                    if(heaterBedroom.isActive() && bedroomTempIs < bedroomTempWant) {
+            var inv = setInterval(function () {
+                if (bedroomTempIs <= bedroomTempWant && bedroomTempIs >= outSideTemp) {
+                    if (heaterBedroom.isActive() && bedroomTempIs < bedroomTempWant) {
                         //Muss geheitzt werden
                         bedroomTempIs++;
                     } else if ((heaterBedroom.isActive() && bedroomTempIs == bedroomTempWant)) {
                         // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
-                    } else if (!heaterBedroom.isActive() && bedroomTempIs == outSideTemp ) {
+                    } else if (!heaterBedroom.isActive() && bedroomTempIs == outSideTemp) {
                         clearInterval(inv);
                         bedroomTimerStarted = false;
                     } else {
                         bedroomTempIs--;
                     }
                     document.getElementById("counterRoom2").innerHTML = bedroomTempIs.toString();
-                }else {
+                } else {
                     clearInterval(inv);
                     bedroomTimerStarted = false;
-                    }
+                }
             }, 3000);
         }
     }
 }
 
 function countTemperatureBathroom() {
-    if(initialized) {
+    if (initialized) {
 
         if (!bathroomTimerStarted) {
             bathroomTimerStarted = true;
-            var inv = setInterval(function() {    
-                if(bathroomTempIs <= bathroomTempWant && bathroomTempIs >= outSideTemp ) {
-                    if(heaterBathroom.isActive() && bathroomTempIs < bathroomTempWant) {
+            var inv = setInterval(function () {
+                if (bathroomTempIs <= bathroomTempWant && bathroomTempIs >= outSideTemp) {
+                    if (heaterBathroom.isActive() && bathroomTempIs < bathroomTempWant) {
                         //Muss geheitzt werden
                         bathroomTempIs++;
                     } else if ((heaterBathroom.isActive() && bathroomTempIs == bathroomTempWant)) {
                         // Max Temp wurde erreicht es muss nix gemacht werden Oder AußenTemp wurde erreicht. Kälter wird es nicht. 
-                    } else if (!heaterBathroom.isActive() && bathroomTempIs == outSideTemp ) {
+                    } else if (!heaterBathroom.isActive() && bathroomTempIs == outSideTemp) {
                         clearInterval(inv);
                         bathroomTimerStarted = false;
                     } else {
                         bathroomTempIs--;
                     }
                     document.getElementById("counterRoom3").innerHTML = bathroomTempIs.toString();
-                }else {
+                } else {
                     clearInterval(inv);
                     bathroomTimerStarted = false;
-                    }
+                }
             }, 3000);
         }
     }
 }
-const simTimeSlider = document.querySelector('#simulationTimeSlider');
-const minsHand = document.querySelector('.min-hand');
-const hourHand = document.querySelector('.hour-hand');
-let mins = 0; //0-59
-let hour = 3; //0-12
 
 
-simTimeSlider.addEventListener("change", changeTime)
+
+
 
 
 
 function setDate() {
     // +90 Kommen vom Startpunkt der Rotate Funktion. 
-  const minsDegrees = ((mins / 60) * 360)+90;
-  minsHand.style.transform = "rotate("+minsDegrees.toString()+"deg)";
+    const minsDegrees = ((mins / 60) * 360) + 90;
+    minsHand.style.transform = "rotate(" + minsDegrees.toString() + "deg)";
 
-  
-  const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30)+90;
-  //hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-  hourHand.style.transform = "rotate("+hourDegrees.toString()+"deg)";
+
+    const hourDegrees = ((hour / 12) * 360) + ((mins / 60) * 30) + 90;
+    //hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    hourHand.style.transform = "rotate(" + hourDegrees.toString() + "deg)";
 }
 
 function changeTime() {
-    hour = (parseInt(simTimeSlider.value) +  6 ) %12
-    console.log("Slider Value "+simTimeSlider.value)
-    console.log("calc hour: "+hour)
-    setDate() 
-   }
-
-
+    hour = (parseInt(simTimeSlider.value) + 6) % 12
+    console.log("Slider Value " + simTimeSlider.value)
+    console.log("calc hour: " + hour)
+    setDate()
+}
