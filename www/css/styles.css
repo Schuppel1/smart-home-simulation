@@ -16,6 +16,11 @@ h3 {
   font-size: 21px;
 }
 
+button {
+  border: none;
+  padding: 6px;
+}
+
 .controls {
   width: 100%;
   min-width: 450px;
@@ -29,6 +34,8 @@ h3 {
   width: 100%;
   min-width: 450px;
   height: auto;
+  position: relative;
+  top: 50%;
 }
 
 .title h2 {
@@ -75,8 +82,9 @@ h3 {
 .monitoring {
   position: absolute;
   top: 45%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -45%);
+  display: flex;
 }
 
 .button_icon_l {
@@ -101,6 +109,18 @@ h3 {
   background: #eaeaea;
   margin-right: 20px;
   padding: 20px;
+}
+
+.button_icon_lock {
+  border: none;
+  background: #eaeaea;
+  height: 100px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-right: 20px;
+  position: absolute;
+  left: 92%;
+  top: 30%;
 }
 
 .slide_in {
@@ -143,6 +163,42 @@ h3 {
   height: 30px;
 }
 
+.sunny_b {
+  float: right;
+}
+
+.set-button {
+  position: relative;
+  top: 20%;
+  float: right;
+  padding: 20px;
+  background-color: #ffff00;
+}
+
+.modelv {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.wetter-slider {
+  width: 300px;
+}
+
+.uhr-slider {
+  width: 300px;
+}
+
+.outside-temp {
+  margin-top: 30px;
+}
+
+.ausen-temp {
+  margin-top: 58px;
+  position: relative;
+  left: -10%;
+}
+
 model-viewer {
   width: 800px;
   height: 600px;
@@ -153,10 +209,18 @@ model-viewer {
   height: 100px;
   border: 5px solid white;
   border-radius: 50%;
-  position: relative;
+  position: absolute;
+  left: 92%;
+  top: 10%;
   padding: 5px;
   margin-top: 10px;
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.clock-time-24h {
+  position: absolute;
+  left: 92.8%;
+  top: 21.5%;
 }
 
 .clock-face {
