@@ -180,11 +180,11 @@ model-viewer {
 }
 
 .min-hand {
-  height: 3px;
+  height: 2px;
 }
 
 .hour-hand {
-  height: 3px;
+  height: 5px;
   width: 50%;
 }
 

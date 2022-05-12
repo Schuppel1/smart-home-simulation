@@ -10,16 +10,15 @@ const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
 
 //Time Slider
 
-//23 - 04 Nacht
-//05 - 10 Morgens
-//11 - 16 Mittags
-//17 - 22 Abends 
+
 
 const simTimeSlider = document.querySelector('#simulationTimeSlider');
+const simTime24 = document.querySelector('.clock-time-24h');
 const minsHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
 let mins = 0; //0-59
 let hour = 3; //0-12
+let hour24 = 3; // 0-23
 
 
 let RGBColorLivingroom = [255, 255, 0]
@@ -52,6 +51,11 @@ let livingroomTimerStarted = false;
 let bedroomTimerStarted = false;
 let bathroomTimerStarted = false;
 
+//Pfade zu den Models welche bei der Uhrzeit angezeigt wird.
+let modelHDRISrcMorning = "./models/HDR/Standard/Morgen.hdr"
+let modelHDRISrcMidday = "./models/HDR/Standard/Mittag.hdr"
+let modelHDRISrcEvening = "./models/HDR/Standard/Abend.hdr"
+let modelHDRISrcNight = "./models/HDR/Standard/Nacht.hdr"
 
 //Eventlistener
 RGBInputLivingroom.addEventListener('input', function () {
@@ -59,7 +63,6 @@ RGBInputLivingroom.addEventListener('input', function () {
     if (initialized) {
         lampLivingroom.switchColor(RGBColorLivingroom)
     }
-
 });
 
 RGBInputBathroom.addEventListener('input', function () {
@@ -67,7 +70,6 @@ RGBInputBathroom.addEventListener('input', function () {
     if (initialized) {
         lampBathroom.switchColor(RGBColorBathroom)
     }
-
 });
 
 RGBInputBedroom.addEventListener('input', function () {
@@ -75,17 +77,81 @@ RGBInputBedroom.addEventListener('input', function () {
     if (initialized) {
         lampBedroom.switchColor(RGBColorBedroom)
     }
-
 });
 
 simTimeSlider.addEventListener("change", changeTime)
-outSideTempinputField.addEventListener("change",function () {
+outSideTempinputField.addEventListener("change", function () {
     outSideTemp = outSideTempinputField.value;
-
-
 });
 
+//Uhrzeit Buttons
+document.querySelector('.sim-time-morning').addEventListener("click", (event) => ((arg) => {
+    setSimulationTime1(arg);
+})('5'));
+document.querySelector('.sim-time-midday').addEventListener("click", (event) => ((arg) => {
+    setSimulationTime1(arg);
+})('11'));
+document.querySelector('.sim-time-evening').addEventListener("click", (event) => ((arg) => {
+    setSimulationTime1(arg);
+})('17'));
+document.querySelector('.sim-time-night').addEventListener("click", (event) => ((arg) => {
+    setSimulationTime1(arg);
+})('23'));
+
+//Wetter Buttons
+document.querySelector('.sim-modelset-sunny').addEventListener("click", (event) => ((arg) => {
+    setHDRIModelset(arg);
+    setSimulationTime1("11")
+})("sunny"));
+document.querySelector('.sim-modelset-cloudy').addEventListener("click", (event) => ((arg) => {
+    setHDRIModelset(arg);
+    setSimulationTime1("11")
+})("cloudy"));
+
+
 //Funktionen
+function setSimulationTime1(setHour) {
+    hour24 = parseInt(setHour)
+    hour = (parseInt(setHour) + 6) % 12
+    simTime24.innerHTML = hour24.toString() + ":00 Uhr"
+    setDate()
+    setSimulationTime()
+}
+
+function setHDRIModelset(modelset) {
+    placeHolder = "Standard"
+
+    switch (modelset) {
+        case "sunny":
+            placeHolder = "Standard"
+            break;
+        case "cloudy":
+            placeHolder = "Cloudy"
+            break;
+    }
+
+    modelHDRISrcMorning = "./models/HDR/"+placeHolder+"/Morgen.hdr"
+    modelHDRISrcMidday = "./models/HDR/"+placeHolder+"/Mittag.hdr"
+    modelHDRISrcEvening = "./models/HDR/"+placeHolder+"/Abend.hdr"
+    modelHDRISrcNight = "./models/HDR/"+placeHolder+"/Nacht.hdr"
+
+}
+
+function setSimulationTime() {
+    if (hour24 == 23) {
+        modelViewerColor.skyboxImage = modelHDRISrcNight
+    } else if (hour24 >= 0 && hour < 5) {
+        modelViewerColor.skyboxImage = modelHDRISrcNight
+    } else if (hour24 >= 5 && hour24 < 11) {
+        modelViewerColor.skyboxImage = modelHDRISrcMorning
+    } else if (hour24 >= 11 && hour24 < 17) {
+        modelViewerColor.skyboxImage = modelHDRISrcMidday
+    } else {
+        modelViewerColor.skyboxImage = modelHDRISrcEvening
+    }
+}
+
+
 function rgbArrayToString(rgbArray) {
     return "rgb(" + rgbArray[0] + "," + rgbArray[1] + "," + rgbArray[2] + ")"
 }
@@ -413,9 +479,13 @@ function setDate() {
     hourHand.style.transform = "rotate(" + hourDegrees.toString() + "deg)";
 }
 
+
 function changeTime() {
+    hour24 = (parseInt(simTimeSlider.value) + 6) % 24
     hour = (parseInt(simTimeSlider.value) + 6) % 12
-    console.log("Slider Value " + simTimeSlider.value)
-    console.log("calc hour: " + hour)
+    simTime24.innerHTML = hour24.toString() + ":00 Uhr"
     setDate()
 }
+
+
+
