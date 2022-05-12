@@ -8,6 +8,7 @@
 }
 
 h2 {
+  text-align: center;
   font-size: 45px;
 }
 
@@ -23,8 +24,15 @@ h3 {
   padding-bottom: 50px;
 }
 
+.monitoring-wrapper {
+  background-color: #EAEAEA;
+  width: 100%;
+  min-width: 450px;
+  height: auto;
+}
+
 .title h2 {
-  padding: 27px 0px 0px 38px;
+  padding: 27px 0px 0px 0px;
 }
 
 .rooms {
@@ -54,6 +62,21 @@ h3 {
 .icon {
   height: 62px;
   width: 62px;
+}
+
+.simulation {
+  max-width: fit-content;
+}
+
+.col-3 {
+  position: relative;
+}
+
+.monitoring {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 }
 
 .button_icon_l {
