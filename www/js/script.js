@@ -368,3 +368,21 @@ function countTemperatureBathroom() {
     }
 }
 
+
+const minsHand = document.querySelector('.min-hand');
+const hourHand = document.querySelector('.hour-hand');
+let mins = 0; //0-59
+let hour = 3; //0-12
+
+function setDate() {
+    // +90 Kommen vom Startpunkt der Rotate Funktion. 
+  const minsDegrees = ((mins / 60) * 360)+90;
+  minsHand.style.transform = "rotate("+minsDegrees.toString()+"deg)";
+
+  
+  const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30)+90;
+  //hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+  hourHand.style.transform = "rotate("+hourDegrees.toString()+"deg)";
+}
+
+
