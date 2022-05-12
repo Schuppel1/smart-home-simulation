@@ -2,44 +2,43 @@
 	font-family: Roboto;
 	src: "./fonts/Roboto-Regular.ttf";
 }
-*{
+* {
 	margin: 0;
-	font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 }
-h2{
+h2 {
 	text-align: center;
 	font-size: 45px;
 }
-h3{
+h3 {
 	font-size: 21px;
 }
-.controls{
+.controls {
 	width: 100%;
 	min-width: 450px;
 	height: auto;
-	background-color: #EAEAEA; 
+	background-color: #eaeaea;
 	padding-bottom: 50px;
 }
 
 .monitoring-wrapper {
-	background-color: #EAEAEA; 
+	background-color: #eaeaea;
 	width: 100%;
 	min-width: 450px;
 	height: auto;
 }
 
-.title h2{
+.title h2 {
 	padding: 27px 0px 0px 0px;
 }
-.rooms{
+.rooms {
 	margin-left: 38px;
 	margin-top: 20px;
 }
 
-
 .room1,
 .room2,
-.room3{
+.room3 {
 	background-color: white;
 	width: 90%;
 	height: 225px;
@@ -51,18 +50,18 @@ h3{
 
 .room1 h3,
 .room2 h3,
-.room3 h3{
+.room3 h3 {
 	padding: 8px 0px 8px 20px;
 }
-.icon{
+.icon {
 	height: 62px;
 	width: 62px;
 }
 .simulation {
 	max-width: fit-content;
 }
-.col-3{
-	position: relative
+.col-3 {
+	position: relative;
 }
 .monitoring {
 	position: absolute;
@@ -70,29 +69,30 @@ h3{
 	left: 50%;
 	transform: translate(-50%, -45%);
 }
-.button_icon_l{
+.button_icon_l {
 	border: none;
-	background: #EAEAEA;
+	background: #eaeaea;
 	margin-left: 20px;
 	padding: 20px;
 	margin-top: 10px;
 	float: left;
-}.button_icon_m{
+}
+.button_icon_m {
 	border: none;
-	background: #EAEAEA;
+	background: #eaeaea;
 	margin: 10px 51px 0px 51px;
 	padding: 20px;
 	float: left;
 }
 
-.button_icon_r{
+.button_icon_r {
 	border: none;
-	background: #EAEAEA;
+	background: #eaeaea;
 	margin-right: 20px;
 	padding: 20px;
 }
 
-.slide_in{
+.slide_in {
 	padding: 0;
 	border: none;
 	background: none;
@@ -107,48 +107,81 @@ h3{
 	position: absolute;
 	top: 115px;
 	right: 277px;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
 	min-width: 200px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	padding: 12px 16px;
 	z-index: 1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-	display: block;
-  }
-
-
-.span-paint{
-
- 	padding: 8px;
-	background-color: #EAEAEA;
 }
-  .paintbrush{
-	  width: 30px;
-	  height: 30px;
-  }
 
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.span-paint {
+	padding: 8px;
+	background-color: #eaeaea;
+}
+.paintbrush {
+	width: 30px;
+	height: 30px;
+}
 
 model-viewer {
 	width: 800px;
 	height: 600px;
-} 
+}
 
+.clock {
+	width: 100px;
+	height: 100px;
+	border: 5px solid white;
+	border-radius: 50%;
+	position: relative;
+	padding: 5px;
+	margin-top: 10px;
+	box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
+.clock-face {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform: translateY(-3px); /* account for the height of the clock hands */
+}
 
+.hand {
+	width: 50%;
+	height: 4px;
+	background: black;
+	position: absolute;
+	top: 50%;
+	transform-origin: 100%;
+	transform: rotate(90deg);
+	transition: all 0.05s;
+	transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.min-hand {
+	height: 2px;
+}
+
+.hour-hand {
+	height: 5px;
+	width: 50%;
+}
 
 $track-h: 4px;
 $thumb-d: 24px;
 
 @mixin track() {
 	border: none;
-	width: 100%; 
+	width: 100%;
 	height: $track-h;
 	border-radius: $track-h;
 	background: linear-gradient(
@@ -165,11 +198,11 @@ $thumb-d: 24px;
 
 @mixin thumb() {
 	border: 4px solid white;
-	width: $thumb-d; 
+	width: $thumb-d;
 	height: $thumb-d;
 	border-radius: 50%;
 	background: var(--color-alpha);
-	box-shadow: var(--box-shadow);  
+	box-shadow: var(--box-shadow);
 }
 
 /*------------------------------------*\
@@ -187,9 +220,9 @@ $thumb-d: 24px;
 
 	/* borders */
 	--border-radius: 4px;
-  
+
 	/* box shadow */
-	--box-shadow: 0 0 0 1px rgba(0,0,0,.025), 0 1px 5px rgba(0, 0, 0, 0.25);
+	--box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 1px 5px rgba(0, 0, 0, 0.25);
 
 	/* transitions */
 	--transition-duration: 0.1s;
@@ -203,27 +236,35 @@ $thumb-d: 24px;
 	min-height: $thumb-d;
 	background: transparent;
 	outline: none;
-  
-	&,&::-webkit-slider-thumb {
+
+	&,
+	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
 	}
-  
+
 	&::-webkit-slider-runnable-track {
 		@include track();
 	}
-	&::-moz-range-track { @include track; }
-	&::-ms-track { @include track; }
-	
+	&::-moz-range-track {
+		@include track;
+	}
+	&::-ms-track {
+		@include track;
+	}
+
 	&::-webkit-slider-thumb {
-		margin-top: .5*($track-h - $thumb-d);
+		margin-top: 0.5 * ($track-h - $thumb-d);
 		@include thumb;
 	}
-	&::-moz-range-thumb { @include thumb; }
+	&::-moz-range-thumb {
+		@include thumb;
+	}
 	&::-ms-thumb {
 		margin-top: 0;
 		@include thumb;
 	}
-	
-	&::-ms-tooltip { display: none }
-  
+
+	&::-ms-tooltip {
+		display: none;
+	}
 }
