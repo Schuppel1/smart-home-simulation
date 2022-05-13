@@ -269,6 +269,8 @@ function lockHome() {
         return;
     }
 
+
+
     modelId = "lockDisplay"
     colorLocked = rgbArrayToZeroOneArray([226, 0, 0])
     colorOpen = rgbArrayToZeroOneArray([22, 173, 0])
@@ -300,6 +302,10 @@ function funLoad() {
         if (!modelViewerColor.model) {
             alert("Das Model ist noch nicht geladen");
         } else {
+            document.getElementById("counterRoom1").innerHTML = outSideTempinputField.value;
+            document.getElementById("counterRoom2").innerHTML = outSideTempinputField.value;
+            document.getElementById("counterRoom3").innerHTML = outSideTempinputField.value;
+
             initialized = true;
             material = modelViewerColor.model.materials;
             // Object Definition
