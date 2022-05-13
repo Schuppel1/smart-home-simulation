@@ -1,5 +1,5 @@
 //Controll and must HaveObjetcs
-const modelViewerColor = document.querySelector("model-viewer#color");
+const modelViewerColor = document.querySelector('model-viewer#color');
 
 let initialized = false;
 let locked = false;
@@ -9,17 +9,16 @@ const RGBInputBedroom = document.querySelector('.RGB-input-bedroom');
 const RGBInputBathroom = document.querySelector('.RGB-input-bathroom');
 
 //Time Slider
-
-
-
 const simTimeSlider = document.querySelector('#simulationTimeSlider');
 const simTime24 = document.querySelector('.clock-time-24h');
 const minsHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
 let mins = 0; //0-59
-let hour = 3; //0-12
-let hour24 = 3; // 0-23
+let hour = 12; //0-12
+let hour24 = 12; // 0-23
 
+//Wether Slider
+const simWetherSlider = document.querySelector('#sim-wetter-slider');
 
 let RGBColorLivingroom = [255, 255, 0]
 let RGBColorBedroom = [255, 255, 0]
@@ -40,7 +39,6 @@ let heaterBedroom;
 //Temperatur
 const outSideTempinputField = document.querySelector('#outsideTemp');
 let outSideTemp = outSideTempinputField.value;
-console.log(outSideTemp)
 let bedroomTempIs = outSideTemp;
 let bedroomTempWant = 25;
 let bathroomTempIs = outSideTemp;
@@ -80,8 +78,21 @@ RGBInputBedroom.addEventListener('input', function () {
 });
 
 simTimeSlider.addEventListener("change", changeTime)
+
 outSideTempinputField.addEventListener("change", function () {
     outSideTemp = outSideTempinputField.value;
+});
+
+simWetherSlider.addEventListener("change", function () {
+
+    if (simWetherSlider.value == "1") {
+        setHDRIModelset("sunny")
+    } else if (simWetherSlider.value == "0") {
+        setHDRIModelset("cloudy")
+    } else {
+
+    }
+
 });
 
 //Uhrzeit Buttons
@@ -130,10 +141,10 @@ function setHDRIModelset(modelset) {
             break;
     }
 
-    modelHDRISrcMorning = "./models/HDR/"+placeHolder+"/Morgen.hdr"
-    modelHDRISrcMidday = "./models/HDR/"+placeHolder+"/Mittag.hdr"
-    modelHDRISrcEvening = "./models/HDR/"+placeHolder+"/Abend.hdr"
-    modelHDRISrcNight = "./models/HDR/"+placeHolder+"/Nacht.hdr"
+    modelHDRISrcMorning = "./models/HDR/" + placeHolder + "/Morgen.hdr"
+    modelHDRISrcMidday = "./models/HDR/" + placeHolder + "/Mittag.hdr"
+    modelHDRISrcEvening = "./models/HDR/" + placeHolder + "/Abend.hdr"
+    modelHDRISrcNight = "./models/HDR/" + placeHolder + "/Nacht.hdr"
 
 }
 
@@ -258,6 +269,8 @@ function lockHome() {
         return;
     }
 
+
+
     modelId = "lockDisplay"
     colorLocked = rgbArrayToZeroOneArray([226, 0, 0])
     colorOpen = rgbArrayToZeroOneArray([22, 173, 0])
@@ -289,6 +302,10 @@ function funLoad() {
         if (!modelViewerColor.model) {
             alert("Das Model ist noch nicht geladen");
         } else {
+            document.getElementById("counterRoom1").innerHTML = outSideTempinputField.value;
+            document.getElementById("counterRoom2").innerHTML = outSideTempinputField.value;
+            document.getElementById("counterRoom3").innerHTML = outSideTempinputField.value;
+
             initialized = true;
             material = modelViewerColor.model.materials;
             // Object Definition
