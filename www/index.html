@@ -12,19 +12,28 @@
 </head>
 
 <body>
+  <header>
+    <img class="logo" src="./img/logo.png">
+    <h2>Smart-Home-Simulation</h2>
+
+  </header>
   <div class="container-fluid">
     <div class="row">
       <div class="col-4">
         <div class="controls">
-          <div class="title">
-            <h2>Beispiel Tinyhouse</h2>
-          </div>
           <div class="settings">
+            <div class="lock">
+              <button class="button_icon_l" onclick="lockHome()">
+                <img id="imgLock" class="icon" src="./img/unlocked.png"></button>
+            </div>
             <button type="button" class="settings_m settings_b">Manuell</button>
             <button type="button" class="settings_a settings_b">Automatisiert</button>
           </div>
+
+
+
           <div class="rooms">
-            
+
             <div class="room1">
               <h3>Wohnzimmer</h3>
               <div class="icon-container">
@@ -90,24 +99,17 @@
 
       <div class="col-5">
         <div class="simulation">
-          <div class="title">
-            <h2>Smart-Home-Simulation</h2>
-          </div>
           <model-viewer id="color" bounds="tight" enable-pan src="./models/smart-home-model_v3.glb" ar
             ar-modes="webxr scene-viewer quick-look" camera-controls environment-image="./models/HDR_040_Field.hdr"
             poster="./img/poster-1.webp" shadow-intensity="1" skybox-image="./models/HDR_040_Field.hdr">
           </model-viewer>
 
-          <button class="button_icon_l" onclick="lockHome()"><img id="imgLock" class="icon"
-              src="./img/unlocked.png"></button>
+
         </div>
       </div>
 
       <div class="col-3">
         <div class="monitoring-wrapper">
-          <div class="title">
-            <h2>Monitoring</h2>
-          </div>
           <div class="monitoring">
             <div class="temperatureRoom1">
               <p> Raumtemperatur Wohnzimmer: <span id="counterRoom1">15</span> <a>° C</a>
@@ -146,8 +148,9 @@
   </div>
 
 
+
   <script src="./js/script.js" defer></script>
-  <!-- <script type="module" src="./js/model-viewer.min.js" defer></script> -->
+  <script type="module" src="./js/model-viewer.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>

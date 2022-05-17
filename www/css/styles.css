@@ -7,6 +7,29 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  background-image: url("/www/img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logo {
+  height: 70px;
+  margin: 5px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.562);
+}
+
+header h2 {
+  position: relative;
+  top: 9px;
+  margin: 9px;
+}
+
 h2 {
   text-align: center;
   font-size: 45px;
@@ -21,33 +44,36 @@ h3 {
   width: 100%;
   min-width: 450px;
   height: auto;
-  background-color: #0098A1;
+  background-color: rgba(0, 0, 0, 0.562);
   padding-bottom: 50px;
 }
 
 .settings {
+  position: relative;
+  left: 8%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   padding: 27px 0px 0px 0px;
 }
 
 .settings_b {
-  background-color: #fcf971;
+  background-color: rgba(0, 0, 0, 0.562);
+  color: white;
   height: 40px;
   border: none;
   width: 130px;
-  border-radius: 27px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  border-color: rgba(255, 255, 255, 0.571);
+  border-style: solid;
+  border-width: 0.75px;
 }
 
-.settings_m {
+.lock {
   position: relative;
-  left: -20%;
-}
-
-.settings_a {
-  position: relative;
-  left: 18%;
+  left: 65%;
+  top: 100px;
+  margin-top: -100px;
 }
 
 .monitoring-wrapper {
@@ -55,10 +81,6 @@ h3 {
   width: 100%;
   min-width: 450px;
   height: auto;
-}
-
-.title h2 {
-  padding: 27px 0px 0px 0px;
 }
 
 .rooms {
@@ -73,11 +95,14 @@ h3 {
 .room1,
 .room2,
 .room3 {
-  background-color: #265557;
+  background-color: rgba(0, 0, 0, 0.276);
   width: 90%;
   height: 225px;
   margin-top: 40px;
   border-radius: 27px;
+  border-color: rgba(255, 255, 255, 0.571);
+  border-style: solid;
+  border-width: 1px;
 }
 
 .room1 {
@@ -113,7 +138,7 @@ h3 {
 
 .button_icon_l {
   border: none;
-  background: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   margin-top: 10px;
   float: left;
@@ -121,8 +146,8 @@ h3 {
 }
 
 .button_icon_m {
+  background-color: rgba(255, 255, 255, 0.5);
   border: none;
-  background: #fff;
   margin-top: 10px;
   padding: 20px;
   float: left;
@@ -171,7 +196,7 @@ h3 {
 
 .span-paint {
   padding: 6px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.571);
   border-radius: 15px;
   position: relative;
   float: left;
