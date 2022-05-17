@@ -171,6 +171,8 @@ button {
 }
 
 .simulation {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
   max-width: fit-content;
 }
 
@@ -474,6 +476,4 @@ model-viewer {
 }
 .c-range__slider::-ms-tooltip {
   display: none;
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=example.css.map */
