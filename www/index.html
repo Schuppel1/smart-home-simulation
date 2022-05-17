@@ -12,55 +12,81 @@
 </head>
 
 <body>
+  <header>
+    <img class="logo" src="./img/logo.png">
+    <h2>Smart-Home-Simulation</h2>
+
+  </header>
   <div class="container-fluid">
     <div class="row">
       <div class="col-4">
         <div class="controls">
-          <div class="title">
-            <h2>Beispiel Tinyhouse</h2>
+          <div class="settings">
+            <div class="lock">
+              <button class="button_icon_l" onclick="lockHome()">
+                <img id="imgLock" class="icon" src="./img/unlocked.png"></button>
+            </div>
+            <button type="button" class="settings_m settings_b">Manuell</button>
+            <button type="button" class="settings_a settings_b">Automatisiert</button>
           </div>
+
+
+
           <div class="rooms">
-            <button type="button" class="btn btn-warning">Manuell</button>
-            <button type="button" hidden class="btn btn-warning">Automatisiert</button>
+
             <div class="room1">
               <h3>Wohnzimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('livingroom', 'lamp')"><img id="imgLampLivingroom"
-                  class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m"
-                onclick="changeColor('livingroom', 'heater'); countTemperatureLivingroom()"><img
-                  id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
-              <div class="dropdown">
-                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
-                <div class="dropdown-content">
-                  <input class="c-range__slider RGB-input-livingroom" id="hue" type="range" value="50" max="360">
+              <div class="icon-container">
+                <button class="button_icon_l" onclick="changeColor('livingroom', 'lamp')"><img id="imgLampLivingroom"
+                    class="icon" src="./img/lightbulb.png"></button>
+                <button class="button_icon_m"
+                  onclick="changeColor('livingroom', 'heater'); countTemperatureLivingroom()"><img
+                    id="imgHeaterLivingroom" class="icon" src="./img/heizung.png"></button>
+              </div>
+              <div class="dropdown-container">
+                <div class="dropdown">
+                  <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                  <div class="dropdown-content">
+                    <input class="c-range__slider RGB-input-livingroom" id="hue" type="range" value="50" max="360">
+                  </div>
                 </div>
               </div>
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room2">
               <h3>Schlafzimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('bedroom', 'lamp')"><img id="imgLampBedroom"
-                  class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m" onclick="changeColor('bedroom', 'heater') ; countTemperatureBedroom()"><img
-                  id="imgHeaterBedroom" class="icon" src="./img/heizung.png"></button>
-              <div class="dropdown">
-                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
-                <div class="dropdown-content">
-                  <input class="c-range__slider RGB-input-bedroom" id="hue" type="range" value="50" max="360">
+              <div class="icon-container">
+                <button class="button_icon_l" onclick="changeColor('bedroom', 'lamp')"><img id="imgLampBedroom"
+                    class="icon" src="./img/lightbulb.png"></button>
+                <button class="button_icon_m"
+                  onclick="changeColor('bedroom', 'heater') ; countTemperatureBedroom()"><img id="imgHeaterBedroom"
+                    class="icon" src="./img/heizung.png"></button>
+              </div>
+              <div class="dropdown-container">
+                <div class="dropdown">
+                  <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                  <div class="dropdown-content">
+                    <input class="c-range__slider RGB-input-bedroom" id="hue" type="range" value="50" max="360">
+                  </div>
                 </div>
               </div>
               <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
             </div>
             <div class="room3">
               <h3>Badezimmer</h3>
-              <button class="button_icon_l" onclick="changeColor('bathroom', 'lamp')"><img id="imgLampBathroom"
-                  class="icon" src="./img/lightbulb.png"></button>
-              <button class="button_icon_m" onclick="changeColor('bathroom', 'heater'), countTemperatureBathroom()"><img
-                  id="imgHeaterBathroom" class="icon" src="./img/heizung.png"></button>
-              <div class="dropdown">
-                <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
-                <div class="dropdown-content">
-                  <input class="c-range__slider RGB-input-bathroom" id="hue" type="range" value="50" max="360">
+              <div class="icon-container">
+                <button class="button_icon_l" onclick="changeColor('bathroom', 'lamp')"><img id="imgLampBathroom"
+                    class="icon" src="./img/lightbulb.png"></button>
+                <button class="button_icon_m"
+                  onclick="changeColor('bathroom', 'heater'), countTemperatureBathroom()"><img id="imgHeaterBathroom"
+                    class="icon" src="./img/heizung.png"></button>
+              </div>
+              <div class="dropdown-container">
+                <div class="dropdown">
+                  <div class="span-paint"><img class="paintbrush" src="./img/iconmonstr-paintbrush.png"> </div>
+                  <div class="dropdown-content">
+                    <input class="c-range__slider RGB-input-bathroom" id="hue" type="range" value="50" max="360">
+                  </div>
                 </div>
               </div>
             </div>
@@ -210,6 +236,7 @@
           </div>
           <div class="humidityMonitoring">
             <p> Luftfeuchtigkeit: <span id="counter">50%</span>
+
           </div>
         </div>
       </div>
