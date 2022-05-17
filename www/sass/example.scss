@@ -1,7 +1,7 @@
 @font-face {
 	font-family: Roboto;
 	src: "./fonts/Roboto-Regular.ttf";
-}
+
 
 * {
 	margin: 0;
@@ -40,12 +40,18 @@ h2 {
 h3 {
 	font-size: 21px;
 }
+button{
+	border: none;
+	padding: 6px;
+}
 
 .controls {
 	width: 100%;
 	min-width: 450px;
 	height: auto;
+
 	background-color: rgba(0, 0, 0, 0.562);
+
 	padding-bottom: 50px;
 }
 
@@ -83,12 +89,20 @@ h3 {
 	width: 100%;
 	min-width: 450px;
 	height: auto;
+	position: relative;
+	top: 50%
+}
+
+
+.title h2 {
+	padding: 27px 0px 0px 0px;
 }
 
 .rooms {
 	margin-left: 38px;
 	margin-top: 20px;
 }
+
 
 .col-4 {
 	margin: 0;
@@ -134,9 +148,11 @@ h3 {
 .monitoring {
 	position: absolute;
 	top: 45%;
-	left: 50%;
+	left: 60%;
 	transform: translate(-50%, -45%);
+	display: flex;
 }
+
 
 .button_icon_l {
 	border: none;
@@ -151,20 +167,41 @@ h3 {
 	background-color: rgba(255, 255, 255, 0.5);
 	border: none;
 	margin-top: 10px;
+
 	padding: 20px;
 	float: left;
 	border-radius: 27px;
 }
 
+
 .icon-container {
 	display: flex;
 	justify-content: space-around;
+
+.button_icon_r {
+	border: none;
+	background: #eaeaea;
+	margin-right: 20px;
+	padding: 20px;
+
+}
+.button_icon_lock{
+	border: none;
+	background: #eaeaea;
+	height: 100px;
+	padding: 20px;
+	margin-top: 10px;
+	margin-right: 20px;
+	position: absolute;
+	left: 92%;
+	top: 30%;
 }
 
 .dropdown-container {
 	display: flex;
 	justify-content: space-around;
 }
+
 
 .slide_in {
 	padding: 0;
@@ -181,7 +218,6 @@ h3 {
 	position: relative;
 	top: 5px;
 }
-
 .dropdown-content {
 	display: none;
 	position: absolute;
@@ -191,6 +227,7 @@ h3 {
 	padding: 12px 16px;
 	z-index: 1;
 }
+
 
 .dropdown:hover .dropdown-content {
 	display: block;
@@ -209,12 +246,97 @@ h3 {
 .paintbrush {
 	width: 30px;
 	height: 30px;
+
+.sunny_b{
+float: right;
 }
 
+.set-button{
+	position: relative;
+	top: 20%;
+	float: right;
+	padding: 20px;
+	background-color: #ffff00;
+}
+
+.modelv{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.wetter-slider{
+	width: 300px;
+}
+
+.uhr-slider{
+
+		width: 300px;
+}
+
+.outside-temp{
+	margin-top: 30px;
+}
+
+
+.ausen-temp{
+	margin-top: 58px;
+	position: relative;
+	left: -10%;
+}
 model-viewer {
 	width: 800px;
 	height: 600px;
 }
+
+.clock {
+	width: 100px;
+	height: 100px;
+	border: 5px solid white;
+	border-radius: 50%;
+	position: absolute;
+	left: 92%;
+	top: 10%;
+	padding: 5px;
+	margin-top: 10px;
+	box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.clock-time-24h{
+	position: absolute;
+	left: 92.8%;
+	top: 21.5%;
+}
+
+.clock-face {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform: translateY(-3px); /* account for the height of the clock hands */
+}
+
+.hand {
+	width: 50%;
+	height: 4px;
+	background: black;
+	position: absolute;
+	top: 50%;
+	transform-origin: 100%;
+	transform: rotate(90deg);
+	transition: all 0.05s;
+	transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.min-hand {
+	height: 2px;
+}
+
+.hour-hand {
+	height: 5px;
+	width: 50%;
+}
+
 
 $track-h: 4px;
 $thumb-d: 24px;
@@ -284,9 +406,11 @@ $thumb-d: 24px;
 		@include track();
 	}
 
+
 	&::-moz-range-track {
 		@include track;
 	}
+
 
 	&::-ms-track {
 		@include track;
@@ -297,9 +421,11 @@ $thumb-d: 24px;
 		@include thumb;
 	}
 
+
 	&::-moz-range-thumb {
 		@include thumb;
 	}
+
 
 	&::-ms-thumb {
 		margin-top: 0;
@@ -309,4 +435,6 @@ $thumb-d: 24px;
 	&::-ms-tooltip {
 		display: none;
 	}
+
 }
+
