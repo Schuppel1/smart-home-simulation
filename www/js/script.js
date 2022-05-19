@@ -61,6 +61,7 @@ const weatherSelect = document.getElementById("weatherSelect");
 const autoElements = document.getElementById("autoElements");
 const autoSubmit = document.getElementById("automatSubmit");
 const loadAutoElementst = document.getElementById("loadAutoElementst");
+const unloadAutoElementst = document.getElementById("unloadAutoElementst");
 let flag = 0;
 let automatID = 1;
 let automatisierungRegeln = [];
@@ -69,6 +70,7 @@ let smartDevSelectInitalization = false;
 
 
 //Eventlistener
+unloadAutoElementst.addEventListener("click", unshowAutomatizations);
 loadAutoElementst.addEventListener("click", showAutomatizations);
 autoSubmit.addEventListener("click", submitAutomatization);
 
@@ -694,21 +696,11 @@ function removeAutomatization(id) {
 }
 
 function showAutomatizations() {
-    if (!checkForAutomatId) {
-        alert("Die Angegebene Automatisierung wurde nicht gefunden.")
-        return
-    }
-
     if(automatisierungRegeln.length ==0) {
         alert("Es sind noch keine Regeln vorhanden")
         return
     }
-
-    autoElements.childNodes.forEach(
-        function (node) {
-            autoElements.removeChild(node);
-        }
-    );
+    unshowAutomatizations();
 
     for (let i = 0; i < automatisierungRegeln.length; i++) {
         if (automatisierungRegeln[i]) {
@@ -724,6 +716,14 @@ function showAutomatizations() {
             autoElements.appendChild(div);
         }
     }
+}
+
+function unshowAutomatizations() {
+    autoElements.childNodes.forEach(
+        function (node) {
+            autoElements.removeChild(node);
+        }
+    );
 }
 
 
