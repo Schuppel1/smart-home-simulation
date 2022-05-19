@@ -699,7 +699,10 @@ function showAutomatizations() {
         return
     }
 
-
+    if(automatisierungRegeln.length ==0) {
+        alert("Es sind noch keine Regeln vorhanden")
+        return
+    }
 
     autoElements.childNodes.forEach(
         function (node) {
