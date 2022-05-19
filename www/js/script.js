@@ -701,10 +701,17 @@ function removeAutomatization(id) {
 }
 
 function showAutomatizations() {
-    if (automatisierungRegeln.length == 0) {
-        alert("Es sind noch keine Regeln vorhanden")
-        return
+    let numRules = 0;
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            numRules++;
+        }
     }
+
+    if(numRules == 0) {
+        alert("Keine Automatisierungsregeln vorhanden")
+    }
+
     unshowAutomatizations();
 
     for (let i = 0; i < automatisierungRegeln.length; i++) {
