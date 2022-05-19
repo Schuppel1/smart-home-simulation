@@ -57,9 +57,21 @@ let modelHDRISrcNight = "./models/HDR/Standard/Nacht.hdr";
 
 // Automatisierung
 const smartDevSelect = document.getElementById("smartDevSelect");
+const weatherSelect = document.getElementById("weatherSelect");
+const autoElements = document.getElementById("autoElements");
+const autoSubmit = document.getElementById("automatSubmit");
+const loadAutoElementst = document.getElementById("loadAutoElementst");
+let flag = 0;
+let automatID = 1;
+let automatisierungRegeln = [];
 let smartHomeDevices = [];
+let smartDevSelectInitalization = false;
+
 
 //Eventlistener
+loadAutoElementst.addEventListener("click", showAutomatizations);
+autoSubmit.addEventListener("click", submitAutomatization);
+
 RGBInputLivingroom.addEventListener("input", function () {
     RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5);
     if (initialized) {
@@ -395,15 +407,21 @@ function funLoad() {
                 this.isActive = function () {
                     return active;
                 };
+
+                this.getName = function () {
+                    return name;
+                };
+
+
             }
 
-            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0], "lampBathroom");
-            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1", "yellow", [0.75, 0.75, 0, 1.0], "lampLivingroom");
-            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2", "yellow", [0.75, 0.75, 0, 1.0], "lampBedroom");
+            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0], "Lampe Badezimmer");
+            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1", "yellow", [0.75, 0.75, 0, 1.0], "Lampe Wohnzimmer");
+            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2", "yellow", [0.75, 0.75, 0, 1.0], "Lampe Schlafzimmer");
 
-            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red", [0.55, 0, 0, 1.0], "heaterBathroom");
-            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001", "red", [0.55, 0, 0, 1.0], "heaterLivingroom");
-            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red", [0.55, 0, 0, 1.0], "heaterBedroom");
+            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red", [0.55, 0, 0, 1.0], "Heizung Badezimmer");
+            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001", "red", [0.55, 0, 0, 1.0], "Heizung Wohnzimmer");
+            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red", [0.55, 0, 0, 1.0], "Heizung Schlafzimmer");
 
             smartHomeDevices.push(lampBathroom);
             smartHomeDevices.push(lampLivingroom);
@@ -545,15 +563,20 @@ function changeTime() {
     simTime24.innerHTML = hour24.toString() + ":00 Uhr";
     setDate();
 }
-let flag = 0;
+
 //Button-toggle
 function toggleRooms() {
-    console.log("HUDNASd");
+    funLoad();
+
+    if (!initialized) {
+        return;
+    }
+    initializeDeviceSelection()
     if (flag == 0) {
         document.getElementById("rooms").style.display = "none";
         document.getElementById("auto").style.display = "block";
         flag = 1;
-    } else if (flag == 1) {
+    } else {
         document.getElementById("auto").style.display = "none";
         document.getElementById("rooms").style.display = "block";
         flag = 0;
@@ -574,10 +597,130 @@ function logAllDevices() {
 }
 
 function initializeDeviceSelection() {
-    para = document.createElement("option");
-    for (let i = 0; i < smartHomeDevices.length; i++) {
-        para = document.createElement("option");
-        para.innerHTML = smartHomeDevices[i].getName();
-        smartDevSelect.options.add(para)
+    if (!smartDevSelectInitalization) {
+        for (let i = 0; i < smartHomeDevices.length; i++) {
+            let para = document.createElement("option")
+            para.innerHTML = smartHomeDevices[i].getName();
+            smartDevSelect.options.add(para)
+        }
+        smartDevSelectInitalization = true;
     }
 }
+
+function submitAutomatization() {
+    let device = smartDevSelect.options[smartDevSelect.selectedIndex].value
+    let weather = weatherSelect.options[weatherSelect.selectedIndex].value
+    let hour_from = document.getElementById("timeFrom").value
+    let hour_to = document.getElementById("timeTo").value
+    let outSideTemp = document.getElementById("auto-outside-Temp").value
+
+    let automatisierung = {
+        automatID: automatID,
+        device: device,
+        weather: weather,
+        hour_from: hour_from,
+        hour_to: hour_to,
+        outSideTemp: outSideTemp
+    };
+
+    automatID++
+    automatisierungRegeln.push(automatisierung)
+}
+
+function checkForAutomatId(id) {
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            if (id == automatisierungRegeln[i].automatID) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function editAutomatization(id) {
+
+    if (!checkForAutomatId) {
+        alert("Die Angegebene Automatisierung wurde nicht gefunden.")
+        return
+    }
+
+    let device = smartDevSelect.options[smartDevSelect.selectedIndex].value
+    let weather = weatherSelect.options[weatherSelect.selectedIndex].value
+    let hour_from = document.getElementById("timeFrom").value
+    let hour_to = document.getElementById("timeTo").value
+    let outSideTemp = document.getElementById("auto-outside-Temp").value
+
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            if (id == automatisierungRegeln[i].automatID) {
+                automatisierungRegeln[i].device = device
+                automatisierungRegeln[i].weather = weather
+                automatisierungRegeln[i].hour_from = hour_from
+                automatisierungRegeln[i].hour_to = hour_to
+                automatisierungRegeln[i].outSideTemp = outSideTemp
+            }
+        }
+    }
+}
+
+function getAutomatization(id) {
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            if (id == automatisierungRegeln[i].automatID) {
+                return automatisierungRegeln[i];
+            }
+        }
+    }
+    return null
+}
+
+function removeAutomatization(id) {
+
+    if (!checkForAutomatId) {
+        alert("Die Angegebene Automatisierung wurde nicht gefunden.")
+        return
+    }
+
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            if (id == automatisierungRegeln[i].automatID) {
+                delete automatisierungRegeln[i];
+                //    Wird nicht gelöscht sonder zu undefinded. 
+                //    Daher bleibt die länge des Arrays gleich und die Abfrage nach undefindes muss sein. 
+            }
+        }
+    }
+}
+
+function showAutomatizations() {
+    if (!checkForAutomatId) {
+        alert("Die Angegebene Automatisierung wurde nicht gefunden.")
+        return
+    }
+
+
+
+    autoElements.childNodes.forEach(
+        function (node) {
+            autoElements.removeChild(node);
+        }
+    );
+
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            div = document.createElement("div")
+            div.className = 'auto-element';
+            div.innerHTML = "<p> ID: " + automatisierungRegeln[i].automatID +
+                "<br> Wetter:  " + automatisierungRegeln[i].weather +
+                "<br> Zeit von:  " + automatisierungRegeln[i].hour_from +
+                "<br> Zeit bis:  " + automatisierungRegeln[i].hour_to +
+                "<br> Außentempertur:  " + automatisierungRegeln[i].hour_to +
+                "</p>";
+            console.log(div)
+            autoElements.appendChild(div);
+        }
+    }
+}
+
+

@@ -27,20 +27,7 @@
                 <img id="imgLock" class="icon" src="./img/unlocked.png"></button>
             </div>
             <button type="button" class="settings_m settings_b">Manuell</button>
-
             <button onclick="toggleRooms()" type="button" class="settings_a settings_b">Automatisiert</button>
-
-
-               <!-- <form>   
-              <select id = "smartDevSelect" onchange = "favTutorial()" >  
-              <option> ---Choose tutorial--- </option>  
-              </select>  
-              <p> Your selected tutorial site is:   
-              <input type = "text" id = "favourite" size = "20"></p>  
-              </form>   -->
-
-            
-
           </div>
 
 
@@ -112,27 +99,31 @@
               <label>von</label>
               <input type="time" id="timeFrom" required step="3600"></p>
               <label>bis</label>
-              <input type="time" id="timeTill" required step="3600"></p>
+              <input type="time" id="timeTo" required step="3600"></p>
             </form>
 
             <form id="device">
-              <label for="cars">Welche Geräte sollen automatisiert funktionieren?</label>
+              <label for="cars">Welches Gerät soll automatisiert funktionieren?</label>
 
-              <select name="device">
-                <option value="volvo">Licht</option>
-                <option value="saab">Heizung</option>
+              <select id="smartDevSelect" name="device">
+                <option> ---Choose Device--- </option>
               </select>
             </form>
             <form id="outTemp">
               <label>Außentemperatur</label>
-              <input type="number" id="outsideTemp" name="outsideTemp" value="19" min="-20" max="45">
+              <input type="number" id="auto-outside-Temp" name="outsideTemp" value="19" min="-20" max="45">
             </form>
             <form id="weather">
-              <select name="weather">
-                <option value="so">Sonne</option>
-                <option value="saab">Bewölkung</option>
+              <select id="weatherSelect">
+                <option>Sonne</option>
+                <option>Bewölkung</option>
               </select>
             </form>
+            <button type="button" class="settings_b" id="automatSubmit">Submit</button>
+            <div class="autoElementsContainer">
+              <button type="button" class="settings_b" id="loadAutoElementst">Load Automatisierungen</button>
+              <div id="autoElements"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -291,7 +282,7 @@
 
 
   <script src="./js/script.js" defer></script>
-  <!-- <script type="module" src="./js/model-viewer.min.js" defer></script> -->
+  <script type="module" src="./js/model-viewer.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
