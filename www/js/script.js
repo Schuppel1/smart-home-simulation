@@ -55,6 +55,10 @@ let modelHDRISrcMidday = "./models/HDR/Standard/Mittag.hdr"
 let modelHDRISrcEvening = "./models/HDR/Standard/Abend.hdr"
 let modelHDRISrcNight = "./models/HDR/Standard/Nacht.hdr"
 
+// Automatisierung
+const smartDevSelect = document.getElementById("smartDevSelect"); 
+let smartHomeDevices = [];
+
 //Eventlistener
 RGBInputLivingroom.addEventListener('input', function () {
     RGBColorLivingroom = hslToRgb(RGBInputLivingroom.value / 360, 1, 0.5)
@@ -309,8 +313,8 @@ function funLoad() {
             initialized = true;
             material = modelViewerColor.model.materials;
             // Object Definition
-            function SmartHomeDevice(imgID, modelID, colorControlButton, colorSimulationDevice) {
-
+            function SmartHomeDevice(imgID, modelID, colorControlButton, colorSimulationDevice, devName) {
+                let name = devName;
                 let active = false;
                 let imgId = imgID;
                 let modelId = modelID;
@@ -382,15 +386,27 @@ function funLoad() {
                     return active;
                 }
 
+                this.getName = function () {
+                    return name;
+                }
+
             }
 
-            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0]);
-            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1", "yellow", [0.75, 0.75, 0, 1.0]);
-            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2", "yellow", [0.75, 0.75, 0, 1.0]);
+            lampBathroom = new SmartHomeDevice("#imgLampBathroom", "lamp.3", "yellow", [0.75, 0.75, 0, 1.0],"lampBathroom");
+            lampLivingroom = new SmartHomeDevice("#imgLampLivingroom", "lamp.1", "yellow", [0.75, 0.75, 0, 1.0],"lampLivingroom");
+            lampBedroom = new SmartHomeDevice("#imgLampBedroom", "lamp.2", "yellow", [0.75, 0.75, 0, 1.0],"lampBedroom");
 
-            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red", [0.55, 0, 0, 1.0]);
-            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001", "red", [0.55, 0, 0, 1.0]);
-            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red", [0.55, 0, 0, 1.0]);
+            heaterBathroom = new SmartHomeDevice("#imgHeaterBathroom", "heizung.002", "red", [0.55, 0, 0, 1.0],"heaterBathroom");
+            heaterLivingroom = new SmartHomeDevice("#imgHeaterLivingroom", "heizung.001", "red", [0.55, 0, 0, 1.0],"heaterLivingroom");
+            heaterBedroom = new SmartHomeDevice("#imgHeaterBedroom", "heizung.003", "red", [0.55, 0, 0, 1.0],"heaterBedroom");
+
+            smartHomeDevices.push(lampBathroom);
+            smartHomeDevices.push(lampLivingroom);
+            smartHomeDevices.push(lampBedroom);
+            smartHomeDevices.push(heaterBathroom);
+            smartHomeDevices.push(heaterLivingroom);
+            smartHomeDevices.push(heaterBedroom);
+
         }
     }
 }
@@ -504,5 +520,24 @@ function changeTime() {
     setDate()
 }
 
+function favTutorial() {  
+    var mylist = document.getElementById("smartDevSelect");  
+    document.getElementById("favourite").value = mylist.options[mylist.selectedIndex].text;  
+}  
 
 
+function logAllDevices() {
+    //console.log(smartHomeDevices)
+    for (let i =0; i < smartHomeDevices.length; i++) {
+        console.log(smartHomeDevices[i].getName())
+    }
+}
+
+function initializeDeviceSelection() {
+    para = document.createElement("option");
+    for (let i =0; i < smartHomeDevices.length; i++) {
+        para = document.createElement("option");
+        para.innerHTML= smartHomeDevices[i].getName();
+        smartDevSelect.options.add(para)
+    }
+}
