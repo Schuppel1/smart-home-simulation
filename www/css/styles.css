@@ -12,7 +12,7 @@ div {
 }
 
 body {
-  background-image: url("/www/img/background.jpg");
+  background-image: url("../img/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
