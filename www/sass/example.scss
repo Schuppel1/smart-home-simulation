@@ -8,12 +8,12 @@
 	font-family: "Roboto", sans-serif;
 }
 
-div{
+div {
 	color: #FFF;
 }
 
 body {
-    background-image: url("../img/background.jpg");
+	background-image: url("../img/background.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -21,6 +21,10 @@ body {
 .logo {
 	height: 70px;
 	margin: 5px;
+}
+
+.auto {
+	display: none;
 }
 
 header {
@@ -36,7 +40,7 @@ header h2 {
 	margin-right: 15px;
 }
 
-.time-weather{
+.time-weather {
 	background-color: rgba(0, 0, 0, 0.562);
 	border-radius: 20px;
 	border-color: rgba(255, 255, 255, 0.571);
@@ -49,7 +53,7 @@ h2 {
 	color: #fff;
 }
 
-label{
+label {
 	color: #FFF;
 }
 
@@ -57,7 +61,8 @@ h3 {
 	font-size: 21px;
 	color: #FFF;
 }
-button{
+
+button {
 	border: none;
 	padding: 6px;
 }
@@ -65,7 +70,7 @@ button{
 .controls {
 	width: 100%;
 	min-width: 300px;
-	height: auto;
+	height: 100%;
 
 	background-color: rgba(0, 0, 0, 0.562);
 
@@ -88,7 +93,8 @@ button{
 	width: 130px;
 	border-radius: 10px;
 	margin-bottom: 20px;
-	border-color: rgba(255, 255, 255, 0.571);;
+	border-color: rgba(255, 255, 255, 0.571);
+	;
 	border-style: solid;
 	border-width: 0.75px;
 }
@@ -100,9 +106,9 @@ button{
 	margin-top: -100px;
 }
 
-.monitoring{
+.monitoring {
 	background-color: rgba(0, 0, 0, 0.571);
-	padding: 10px 50px;	
+	padding: 10px 50px;
 	border-radius: 20px;
 	border-color: rgba(255, 255, 255, 0.571);
 	border-style: solid;
@@ -114,10 +120,11 @@ button{
 
 .temperatureRoom1,
 .temperatureRoom2,
-.temperatureRoom3{
+.temperatureRoom3 {
 	margin-top: 17px;
 }
-.temp_i{
+
+.temp_i {
 	margin: 0px 27px 0px 0px;
 }
 
@@ -129,7 +136,6 @@ button{
 	top: -90px;
 	position: relative;
 	left: -2%
-
 }
 
 
@@ -140,6 +146,8 @@ button{
 .rooms {
 	margin-left: 38px;
 	margin-top: 20px;
+
+
 }
 
 
@@ -217,6 +225,7 @@ button{
 	display: flex;
 	justify-content: space-around;
 }
+
 .button_icon_r {
 	border: none;
 	background: #eaeaea;
@@ -224,7 +233,8 @@ button{
 	padding: 20px;
 
 }
-.button_icon_lock{
+
+.button_icon_lock {
 	border: none;
 	background: #eaeaea;
 	height: 100px;
@@ -257,6 +267,7 @@ button{
 	position: relative;
 	top: 5px;
 }
+
 .dropdown-content {
 	display: none;
 	position: absolute;
@@ -274,7 +285,8 @@ button{
 
 .span-paint {
 	padding: 6px;
-	background-color: rgba(255, 255, 255, 0.571);;
+	background-color: rgba(255, 255, 255, 0.571);
+	;
 	border-radius: 15px;
 	position: relative;
 	float: left;
@@ -286,11 +298,12 @@ button{
 	width: 30px;
 	height: 30px;
 }
-.sunny_b{
-float: right;
+
+.sunny_b {
+	float: right;
 }
 
-.set-button{
+.set-button {
 	position: relative;
 	top: 20%;
 	float: right;
@@ -299,7 +312,7 @@ float: right;
 }
 
 
-.modelv{
+.modelv {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 20px;
@@ -307,16 +320,16 @@ float: right;
 	margin-top: 2%;
 }
 
-.wetter-slider{
+.wetter-slider {
 	width: 300px;
 }
 
-.uhr-slider{
+.uhr-slider {
 
-		width: 300px;
+	width: 300px;
 }
 
-.outside-temp{
+.outside-temp {
 	margin-top: 30px;
 }
 
@@ -327,12 +340,12 @@ model-viewer {
 	height: 600px;
 }
 
-.right-wrapper{
+.right-wrapper {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	left:88%;
+	left: 88%;
 	top: 10%;
 	background-color: rgba(0, 0, 0, 0.571);
 	width: 10%;
@@ -355,7 +368,7 @@ model-viewer {
 }
 
 
-.clock-time-24h{
+.clock-time-24h {
 	left: 35%;
 	top: 12px;
 	position: relative;
@@ -365,10 +378,11 @@ model-viewer {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	transform: translateY(-3px); /* account for the height of the clock hands */
+	transform: translateY(-3px);
+	/* account for the height of the clock hands */
 }
 
-.ausen-temp{
+.ausen-temp {
 	position: relative;
 	margin-top: 40px;
 
@@ -376,18 +390,19 @@ model-viewer {
 
 }
 
-.ausen-temp input{
+.ausen-temp input {
 	margin-top: 2px;
 }
 
-.ausen-temp img{
+.ausen-temp img {
 	height: 90px;
 }
 
-.ausen-temp p{
-margin-top: 5px;
-text-align: center;
+.ausen-temp p {
+	margin-top: 5px;
+	text-align: center;
 }
+
 .hand {
 	width: 50%;
 	height: 4px;
@@ -509,4 +524,3 @@ $thumb-d: 24px;
 	}
 
 }
-

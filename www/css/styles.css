@@ -22,6 +22,10 @@ body {
   margin: 5px;
 }
 
+.auto {
+  display: none;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -65,7 +69,7 @@ button {
 .controls {
   width: 100%;
   min-width: 300px;
-  height: auto;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.562);
   padding-bottom: 50px;
 }
