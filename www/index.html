@@ -93,45 +93,55 @@
 
             <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
           </div>
-          <div id="auto" class="auto">
-            <form id="time">
-              <h4>Zeit</h4>
-              <label>von</label>
-              <input type="time" id="timeFrom" required step="3600"></p>
-              <label>bis</label>
-              <input type="time" id="timeTo" required step="3600"></p>
-            </form>
+          <div class="auto-container">
+            <div id="auto" class="auto">
+              <form id="time">
+                <h4>Zeit</h4>
+                <div class="time_form">
+                  <label>von</label>
+                  <input type="time" id="timeFrom" required step="3600"></p>
+                  <label>bis</label>
+                  <input type="time" id="timeTo" required step="3600"></p>
+                </div>
+              </form>
 
-            <form id="device">
-              <label for="cars">Welches Gerät soll automatisiert funktionieren?</label>
+              <form id="device">
+                <label id="label_device">Welches Gerät soll automatisiert funktionieren?</label>
 
-              <select id="smartDevSelect" name="device">
-                <option> ---Choose Device--- </option>
-              </select>
-            </form>
-            <form id="outTemp">
-              <label>Außentemperatur</label>
-              <input type="number" id="auto-outside-Temp" name="outsideTemp" value="19" min="-20" max="45">
-            </form>
-            <form id="weather">
-              <select id="weatherSelect">
-                <option>Sonne</option>
-                <option>Bewölkung</option>
-              </select>
-            </form>
-            <button type="button" class="settings_b" id="automatSubmit">Submit</button>
+                <select class="center-block_t" id="smartDevSelect" name="device">
+                  <option> ---Choose Device--- </option>
+                </select>
+              </form>
+              <form id="outTemp">
+                <label class="center-block">Außentemperatur :</label>
+                <input type="number" class="auto_temp" id="auto-outside-Temp" name="outsideTemp" value="19" min="-20"
+                  max="45">
+              </form>
+              <form id="weather">
+                <p>Wetter-Einstellungen</p>
+                <select class="center-block-weather" id="weatherSelect">
+                  <option>Sonne</option>
+                  <option>Bewölkung</option>
+                </select>
+              </form>
+            </div>
+
+            <button type="button" class="settings_b submit_b" id="automatSubmit">Submit</button>
             <div class="autoElementsContainer">
               <button type="button" class="settings_b" id="loadAutoElementst">show</button>
               <button type="button" class="settings_b" id="unloadAutoElementst">unshow</button>
-              <div id="autoElements"></div>
             </div>
+            <div id="autoElements"></div>
+
             <div class="auto-delete-edit">
               <form id="automatIDForm">
-                <label>AutomatisierungsID</label>
+                <p>AutomatisierungsID</p>
                 <input type="number" id="automatIDInput" name="ID" value="0" min="0">
               </form>
-              <button type="button" class="settings_b" id="delAutoElementst">löschen</button>
-              <button type="button" class="settings_b" id="editAutoElementst">edit</button>
+              <div class="autoElementsContainer">
+                <button type="button" class="settings_b" id="delAutoElementst">löschen</button>
+                <button type="button" class="settings_b" id="editAutoElementst">edit</button>
+              </div>
             </div>
           </div>
         </div>
