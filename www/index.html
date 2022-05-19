@@ -27,12 +27,12 @@
                 <img id="imgLock" class="icon" src="./img/unlocked.png"></button>
             </div>
             <button type="button" class="settings_m settings_b">Manuell</button>
-            <button type="button" class="settings_a settings_b">Automatisiert</button>
+            <button onclick="toggleRooms()" type="button" class="settings_a settings_b">Automatisiert</button>
           </div>
 
 
 
-          <div class="rooms">
+          <div id="rooms" class="rooms">
 
             <div class="room1">
               <h3>Wohnzimmer</h3>
@@ -93,8 +93,35 @@
 
             <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
           </div>
+          <div id="auto" class="auto">
+            <form id="time">
+              <h4>Zeit</h4>
+              <label>von</label>
+              <input type="time" id="timeFrom" required step="3600"></p>
+              <label>bis</label>
+              <input type="time" id="timeTill" required step="3600"></p>
+            </form>
+
+            <form id="device">
+              <label for="cars">Welche Geräte sollen automatisiert funktionieren?</label>
+
+              <select name="device">
+                <option value="volvo">Licht</option>
+                <option value="saab">Heizung</option>
+              </select>
+            </form>
+            <form id="outTemp">
+              <label>Außentemperatur</label>
+              <input type="number" id="outsideTemp" name="outsideTemp" value="19" min="-20" max="45">
+            </form>
+            <form id="weather">
+              <select name="weather">
+                <option value="so">Sonne</option>
+                <option value="saab">Bewölkung</option>
+              </select>
+            </form>
+          </div>
         </div>
-        <!-- <button class="slide_in"><img src="./img/arrow.png"></button> -->
       </div>
 
       <div class="col-8">
@@ -251,7 +278,7 @@
 
 
   <script src="./js/script.js" defer></script>
-  <script type="module" src="./js/model-viewer.min.js" defer></script>
+  <!-- <script type="module" src="./js/model-viewer.min.js" defer></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
