@@ -62,6 +62,11 @@ const autoElements = document.getElementById("autoElements");
 const autoSubmit = document.getElementById("automatSubmit");
 const loadAutoElementst = document.getElementById("loadAutoElementst");
 const unloadAutoElementst = document.getElementById("unloadAutoElementst");
+const automatIDInput = document.getElementById("automatIDInput");
+const delAutoElementst = document.getElementById("delAutoElementst");
+const editAutoElementst = document.getElementById("editAutoElementst");
+
+
 let flag = 0;
 let automatID = 1;
 let automatisierungRegeln = [];
@@ -70,6 +75,7 @@ let smartDevSelectInitalization = false;
 
 
 //Eventlistener
+delAutoElementst.addEventListener("click", delAutoEvent);
 unloadAutoElementst.addEventListener("click", unshowAutomatizations);
 loadAutoElementst.addEventListener("click", showAutomatizations);
 autoSubmit.addEventListener("click", submitAutomatization);
@@ -688,6 +694,7 @@ function removeAutomatization(id) {
         if (automatisierungRegeln[i]) {
             if (id == automatisierungRegeln[i].automatID) {
                 delete automatisierungRegeln[i];
+                alert("Automatisierung erfolgreich gelöscht")
             }
         }
     }
@@ -724,4 +731,6 @@ function unshowAutomatizations() {
     }
 }
 
-
+function delAutoEvent() {
+    removeAutomatization(automatIDInput.value)
+}
