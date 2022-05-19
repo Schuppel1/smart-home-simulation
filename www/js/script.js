@@ -679,7 +679,7 @@ function getAutomatization(id) {
 
 function removeAutomatization(id) {
 
-    if (!checkForAutomatId) {
+    if (!checkForAutomatId(id)) {
         alert("Die Angegebene Automatisierung wurde nicht gefunden.")
         return
     }
@@ -688,15 +688,13 @@ function removeAutomatization(id) {
         if (automatisierungRegeln[i]) {
             if (id == automatisierungRegeln[i].automatID) {
                 delete automatisierungRegeln[i];
-                //    Wird nicht gelöscht sonder zu undefinded. 
-                //    Daher bleibt die länge des Arrays gleich und die Abfrage nach undefindes muss sein. 
             }
         }
     }
 }
 
 function showAutomatizations() {
-    if(automatisierungRegeln.length ==0) {
+    if (automatisierungRegeln.length == 0) {
         alert("Es sind noch keine Regeln vorhanden")
         return
     }
@@ -719,11 +717,11 @@ function showAutomatizations() {
 }
 
 function unshowAutomatizations() {
-    autoElements.childNodes.forEach(
-        function (node) {
-            autoElements.removeChild(node);
-        }
-    );
+    let y = autoElements.childNodes.length
+    //autoElements.childNodes.length verändert sich nach jedem aufruf. Daher muss es via var gemacht werden
+    for (let i = 0; i < y; i++) {
+        autoElements.removeChild(autoElements.childNodes[0])
+    }
 }
 
 
