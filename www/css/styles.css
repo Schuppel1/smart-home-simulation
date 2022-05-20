@@ -128,7 +128,7 @@ button {
   width: 100%;
   min-width: 450px;
   height: auto;
-  top: -135px;
+  top: -100px;
   position: relative;
   left: -2%;
 }
@@ -422,7 +422,7 @@ model-viewer {
   top: 10%;
   background-color: rgba(0, 0, 0, 0.571);
   width: 10%;
-  height: 55%;
+  min-height: 550px;
   border-radius: 20px;
   border-color: #fff;
   border-style: solid;
@@ -456,7 +456,7 @@ model-viewer {
 
 .ausen-temp {
   position: relative;
-  margin-top: 40px;
+  margin-top: 70px;
   color: white;
 }
 
