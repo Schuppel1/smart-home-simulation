@@ -54,6 +54,7 @@ let modelHDRISrcMorning = "./models/HDR/Standard/Morgen.hdr";
 let modelHDRISrcMidday = "./models/HDR/Standard/Mittag.hdr";
 let modelHDRISrcEvening = "./models/HDR/Standard/Abend.hdr";
 let modelHDRISrcNight = "./models/HDR/Standard/Nacht.hdr";
+let actualweather = "Sonne"
 
 // Automatisierung
 const smartDevSelect = document.getElementById("smartDevSelect");
@@ -163,6 +164,7 @@ function setSimulationTime1(setHour) {
     simTime24.innerHTML = hour24.toString() + ":00 Uhr";
     setDate();
     setSimulationTime();
+    checkForSimRules();
 }
 
 function setHDRIModelset(modelset) {
@@ -170,10 +172,12 @@ function setHDRIModelset(modelset) {
 
     switch (modelset) {
         case "sunny":
+            actualweather = "Sonne";
             placeHolder = "Standard";
             break;
         case "cloudy":
             placeHolder = "Cloudy";
+            actualweather = "Bewölkung";
             break;
     }
 
@@ -195,6 +199,7 @@ function setSimulationTime() {
     } else {
         modelViewerColor.skyboxImage = modelHDRISrcEvening;
     }
+    checkForSimRules()
 }
 
 function rgbArrayToString(rgbArray) {
@@ -741,3 +746,52 @@ function unshowAutomatizations() {
 function delAutoEvent() {
     removeAutomatization(automatIDInput.value)
 }
+
+function checkForSimRules() {
+    console.log("checkForSimRules wurde aufgerufen")
+    for (let i = 0; i < automatisierungRegeln.length; i++) {
+        if (automatisierungRegeln[i]) {
+            if (checkForWetherCondition(automatisierungRegeln[i].weather)
+                && checkForTimeCondition(automatisierungRegeln[i].hour_from, automatisierungRegeln[i].hour_to)) {
+                //Regel greift
+                device = getSimDeviceByName(automatisierungRegeln[i].device)
+
+                device.turnOn()
+            }
+        }
+    }
+}
+
+function checkForWetherCondition(wetherCon) {
+    if (wetherCon == actualweather) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function checkForTimeCondition(from, to) {
+    from_number = parseInt(from)
+    to_number = parseInt(to)
+    
+    if (to >= from) {
+        console.log("cas1")
+        if (hour24 >= from_number && hour24 <= to_number) {
+            return true
+        }
+    } else {
+        if (hour24 >= from_number || hour24 <= to_number) {
+            return true
+        }
+    }
+    return false
+}
+
+function getSimDeviceByName(devName) {
+    for (let i = 0; i < smartHomeDevices.length; i++) {
+        if (smartHomeDevices[i].getName() == devName) {
+            return smartHomeDevices[i]
+        }
+    }
+}
+
