@@ -66,7 +66,7 @@ button {
 .controls {
   width: 100%;
   min-width: 300px;
-  height: 100vh;
+  height: 94vh;
   background-color: rgba(0, 0, 0, 0.562);
   padding-bottom: 50px;
 }
@@ -344,7 +344,7 @@ h4 {
 }
 
 #label_device {
-  margin-left: 15px;
+  text-align: center;
 }
 
 .center-block {
