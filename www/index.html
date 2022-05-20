@@ -93,33 +93,56 @@
 
             <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
           </div>
-          <div id="auto" class="auto">
-            <form id="time">
-              <h4>Zeit</h4>
-              <label>von</label>
-              <input type="time" id="timeFrom" required step="3600"></p>
-              <label>bis</label>
-              <input type="time" id="timeTill" required step="3600"></p>
-            </form>
+          <div class="auto-container">
+            <div id="auto" class="auto">
+              <form id="time">
+                <h4>Zeit</h4>
+                <div class="time_form">
+                  <label>von</label>
+                  <input type="time" id="timeFrom" required step="3600"></p>
+                  <label>bis</label>
+                  <input type="time" id="timeTo" required step="3600"></p>
+                </div>
+              </form>
 
-            <form id="device">
-              <label for="cars">Welche Geräte sollen automatisiert funktionieren?</label>
+              <form id="device">
+                <label id="label_device">Welches Gerät soll automatisiert funktionieren?</label>
 
-              <select name="device">
-                <option value="volvo">Licht</option>
-                <option value="saab">Heizung</option>
-              </select>
-            </form>
-            <form id="outTemp">
-              <label>Außentemperatur</label>
-              <input type="number" id="outsideTemp" name="outsideTemp" value="19" min="-20" max="45">
-            </form>
-            <form id="weather">
-              <select name="weather">
-                <option value="so">Sonne</option>
-                <option value="saab">Bewölkung</option>
-              </select>
-            </form>
+                <select class="center-block_t" id="smartDevSelect" name="device">
+                  <option> ---Choose Device--- </option>
+                </select>
+              </form>
+              <form id="outTemp">
+                <label class="center-block">Außentemperatur :</label>
+                <input type="number" class="auto_temp" id="auto-outside-Temp" name="outsideTemp" value="19" min="-20"
+                  max="45">
+              </form>
+              <form id="weather">
+                <p>Wetter-Einstellungen</p>
+                <select class="center-block-weather" id="weatherSelect">
+                  <option>Sonne</option>
+                  <option>Bewölkung</option>
+                </select>
+              </form>
+            </div>
+
+            <button type="button" class="settings_b submit_b" id="automatSubmit">Submit</button>
+            <div class="autoElementsContainer">
+              <button type="button" class="settings_b" id="loadAutoElementst">show</button>
+              <button type="button" class="settings_b" id="unloadAutoElementst">unshow</button>
+            </div>
+            <div id="autoElements"></div>
+
+            <div class="auto-delete-edit">
+              <form id="automatIDForm">
+                <p>AutomatisierungsID</p>
+                <input type="number" id="automatIDInput" name="ID" value="0" min="0">
+              </form>
+              <div class="autoElementsContainer">
+                <button type="button" class="settings_b" id="delAutoElementst">löschen</button>
+                <button type="button" class="settings_b" id="editAutoElementst">edit</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -278,7 +301,7 @@
 
 
   <script src="./js/script.js" defer></script>
-  <!-- <script type="module" src="./js/model-viewer.min.js" defer></script> -->
+  <script type="module" src="./js/model-viewer.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
