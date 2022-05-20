@@ -577,6 +577,9 @@ function changeTime() {
     setDate();
 }
 
+ma_button = document.getElementById("ma_button")
+
+
 //Button-toggle
 function toggleRooms() {
     funLoad();
@@ -586,12 +589,15 @@ function toggleRooms() {
     }
     initializeDeviceSelection()
     if (flag == 0) {
+        console.log(ma_button);
         document.getElementById("rooms").style.display = "none";
         document.getElementById("auto").style.display = "block";
+        ma_button.textContent = 'Manuell';
         flag = 1;
     } else {
         document.getElementById("auto").style.display = "none";
         document.getElementById("rooms").style.display = "block";
+        ma_button.textContent = 'Automatisiert';
         flag = 0;
     }
 }

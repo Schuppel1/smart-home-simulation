@@ -26,8 +26,8 @@
               <button class="button_icon_l" onclick="lockHome()">
                 <img id="imgLock" class="icon" src="./img/unlocked.png"></button>
             </div>
-            <button type="button" class="settings_m settings_b">Manuell</button>
-            <button onclick="toggleRooms()" type="button" class="settings_a settings_b">Automatisiert</button>
+
+            <button id="ma_button" onclick="toggleRooms()" type="button" class="settings_a settings_b">Automatisiert</button>
           </div>
 
 
@@ -93,8 +93,8 @@
 
             <!-- <button class="button_icon_r"><img class="icon" src="./img/jalousie.png"></button> -->
           </div>
-          <div class="auto-container">
-            <div id="auto" class="auto">
+          <div id="auto" class="auto-container">
+            <div  class="auto">
               <form id="time">
                 <h4>Zeit</h4>
                 <div class="time_form">
@@ -124,23 +124,23 @@
                   <option>Bewölkung</option>
                 </select>
               </form>
-            </div>
 
-            <button type="button" class="settings_b submit_b" id="automatSubmit">Submit</button>
-            <div class="autoElementsContainer">
-              <button type="button" class="settings_b" id="loadAutoElementst">show</button>
-              <button type="button" class="settings_b" id="unloadAutoElementst">unshow</button>
-            </div>
-            <div id="autoElements"></div>
 
-            <div class="auto-delete-edit">
-              <form id="automatIDForm">
-                <p>AutomatisierungsID</p>
-                <input type="number" id="automatIDInput" name="ID" value="0" min="0">
-              </form>
+              <button type="button" class="settings_b submit_b" id="automatSubmit">Submit</button>
               <div class="autoElementsContainer">
-                <button type="button" class="settings_b" id="delAutoElementst">löschen</button>
-                <button type="button" class="settings_b" id="editAutoElementst">edit</button>
+                <button type="button" class="settings_b" id="loadAutoElementst">show</button>
+                <button type="button" class="settings_b" id="unloadAutoElementst">unshow</button>
+              </div>
+              <div id="autoElements"></div>
+
+              <div class="auto-delete-edit">
+                <form id="automatIDForm">
+                  <p>AutomatisierungsID</p>
+                  <input type="number" id="automatIDInput" name="ID" value="0" min="0">
+                </form>
+                <div class="autoElementsContainer">
+                  <button type="button" class="settings_b" id="delAutoElementst">löschen</button>
+                </div>
               </div>
             </div>
           </div>
