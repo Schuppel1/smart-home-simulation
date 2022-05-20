@@ -708,7 +708,7 @@ function showAutomatizations() {
         }
     }
 
-    if(numRules == 0) {
+    if (numRules == 0) {
         alert("Keine Automatisierungsregeln vorhanden")
     }
 
@@ -719,12 +719,12 @@ function showAutomatizations() {
             div = document.createElement("div")
             div.className = 'auto-element';
             div.innerHTML = "<p> ID: " + automatisierungRegeln[i].automatID +
+                "<br> Gerät:  " + automatisierungRegeln[i].device +
                 "<br> Wetter:  " + automatisierungRegeln[i].weather +
                 "<br> Zeit von:  " + automatisierungRegeln[i].hour_from +
                 "<br> Zeit bis:  " + automatisierungRegeln[i].hour_to +
                 "<br> Außentempertur:  " + automatisierungRegeln[i].hour_to +
                 "</p>";
-            console.log(div)
             autoElements.appendChild(div);
         }
     }
