@@ -277,7 +277,6 @@ function changeColor(room, device) {
         if (device == "heater") {
             heaterBathroom.switch();
         } else if (device == "lamp") {
-            // console.log("buttonpressed")
             lampBathroom.switch();
         } else {
             console.log("Angegebene Device nicht gefunden");

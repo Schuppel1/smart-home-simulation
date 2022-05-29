@@ -5,6 +5,7 @@ Welche Programme werden benötigt:
 1. Docker
 2. Browser zum ansprechen
 3. Git
+4. Git lfs
 
 Zunächst muss im Terminal folgender Befehl eingegeben werden (dadurch können die großen Models heruntergeladen werden): 
 
